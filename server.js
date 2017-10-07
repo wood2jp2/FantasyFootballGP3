@@ -10,6 +10,9 @@ const
   authRoute = require('./app/routes/auth.js')(app),
   exphbs = require('express-handlebars');
 
+  //load passport strategies
+require('./app/config/passport/passport.js')(passport, models.user);
+
   //Sync Database
 models.sequelize.sync().then(function() {
     console.log('Nice! Database looks fine')
