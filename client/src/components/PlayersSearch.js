@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import AllPlayers from "./AllPlayers";
 import API from "../utils/API";
 
 class PlayersSearch extends Component {
@@ -15,36 +16,10 @@ class PlayersSearch extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <h3>NFL</h3>
-        <table>
-          <thead>
-            <tr>
-              <td>Starters</td>
-              <td>Position</td>
-              <td>Team</td>
-              <td>Season Pts</td>
-              <td>Season Projected Pts</td>
-              <td>Week Projected Pts</td>        
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.players.map((player, index) => (
-              <tr key={index}>
-                <td>{player.name}</td>
-                <td>{player.position}</td>
-                <td>{player.teamAbbr}</td>
-                <td>{player.seasonPts}</td>
-                <td>{player.seasonProjectedPts}</td>
-                <td>{player.weekProjectedPts}</td>
-              </tr>
-            ))};
-          </tbody>
-        </table>
-      </div>
-    );
-  };
-};
+    return(
+      <AllPlayers results={this.state.players}/>
+    )
+  }
+}
 
 export default PlayersSearch;
