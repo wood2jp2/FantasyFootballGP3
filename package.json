@@ -1,32 +1,31 @@
 {
-  "name": "fantasyfootballgp3",
+  "name": "sequelize-passport-example",
   "version": "1.0.0",
-  "description": "group project 3, fantasy football dependencies",
-  "main": "index.js",
+  "description": "Using Passport with Sequelize and MySQL",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wood2jp2/FantasyFootballGP3.git"
+    "url": "git+https://github.com/lyndachiwetelu/using-passport-with-sequelize-and-mysql.git"
   },
-  "author": "JPW",
+  "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/wood2jp2/FantasyFootballGP3/issues"
+    "url": "https://github.com/lyndachiwetelu/node-passport-with-sequelize-and-mysql-example/issues"
   },
-  "homepage": "https://github.com/wood2jp2/FantasyFootballGP3#readme",
+  "homepage": "https://github.com/lyndachiwetelu/node-passport-with-sequelize-and-mysql-example#readme",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
-    "body-parser": "^1.18.2",
+    "body-parser": "^1.16.0",
     "dotenv": "^4.0.0",
-    "express": "^4.16.1",
+    "express": "^4.14.0",
     "express-handlebars": "^3.0.0",
-    "express-session": "^1.15.6",
-    "mysql": "^2.15.0",
-    "mysql2": "^1.4.2",
-    "passport": "^0.4.0",
+    "express-session": "^1.15.0",
+    "mysql": "^2.13.0",
+    "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "sequelize": "^4.13.5"
+    "sequelize": "^3.30.1"
   }
 }
