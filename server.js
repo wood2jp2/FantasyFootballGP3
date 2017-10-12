@@ -5,9 +5,6 @@ const
   session = require('express-session'),
   bodyParser = require('body-parser'),
   env = require('dotenv').load(),
-  exphbs = require('express-handlebars'),
-  models = require("./app/models"),
-  authRoute = require('./app/routes/auth.js')(app, passport),
   exphbs = require('express-handlebars');
 
 //For BodyParser

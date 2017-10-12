@@ -6,22 +6,13 @@ module.exports = function(passport, user) {
   var User = user;
   var LocalStrategy = require('passport-local').Strategy;
 
-<<<<<<< HEAD
-=======
   //serialize
->>>>>>> f4bea8783329efe1ef64f27a69daa58765edb171
   passport.serializeUser(function(user, done) {
     done(null, user.id);
   });
 
-<<<<<<< HEAD
   // used to deserialize the user
   passport.deserializeUser(function(id, done) {
-=======
-  // deserialize user
-  passport.deserializeUser(function(id, done) {
-
->>>>>>> f4bea8783329efe1ef64f27a69daa58765edb171
     User.findById(id).then(function(user) {
       if (user) {
         done(null, user.get());
@@ -31,17 +22,8 @@ module.exports = function(passport, user) {
     });
 
   });
-<<<<<<< HEAD
 
   passport.use('local-signup', new LocalStrategy(
-=======
-
-  passport.use('local-signup', new LocalStrategy({
-
-      usernameField: 'email',
-      passwordField: 'password',
-      passReqToCallback: true // allows us to pass back the entire request to the callback
->>>>>>> f4bea8783329efe1ef64f27a69daa58765edb171
 
     {
       usernameField: 'email',
@@ -51,7 +33,6 @@ module.exports = function(passport, user) {
 
     function(req, email, password, done) {
 
-<<<<<<< HEAD
 
       var generateHash = function(password) {
         return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
@@ -120,44 +101,6 @@ module.exports = function(passport, user) {
       var isValidPassword = function(userpass, password) {
         return bCrypt.compareSync(password, userpass);
       }
-=======
-      var generateHash = function(password) {
-        return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
-      };
-
-      User.findOne({
-          where: {
-            email: email
-          }
-        })
-        .then(function(user) {
-
-          if (user) {
-            return done(null, false, {
-              message: 'That email is already taken'
-            });
-          } else {
-            var userPassword = generateHash(password);
-
-            var data = {
-              email: email,
-              password: userPassword,
-              firstname: req.body.firstname,
-              lastname: req.body.lastname
-            };
-
-            User.create(data).then(function(newUser, created) {
-              if (!newUser) {
-                return done(null, false);
-              }
-              if (newUser) {
-                return done(null, newUser);
-              }
-            });
-          }
-        });
-    }
->>>>>>> f4bea8783329efe1ef64f27a69daa58765edb171
 
       User.findOne({
         where: {
