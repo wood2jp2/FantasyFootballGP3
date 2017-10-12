@@ -1,25 +1,15 @@
 import React from "react";
-import API from "../utils/API";
-import PlayersSearch from "./PlayersSearch";
+import TeamListHeader from "./TeamList-Header"
 
-class TeamList extends React.Component {
+const TeamList = props => {
 
-
-  render() {
-    return (
-      <table>
-        <thead>
-        </thead>
-          <tr>
-            <th>Starters</th>
-            <th>Position</th>
-            <th>Team</th>
-          </tr>
-        <tbody>
-        </tbody>
-      </table>
-    );
-  }
-}
+  return (
+    <table>
+      <TeamListHeader />
+      <tbody>
+      </tbody>
+    </table>
+  );
+};
 
 export default TeamList;
