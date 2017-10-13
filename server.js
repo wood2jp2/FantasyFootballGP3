@@ -37,7 +37,7 @@ app.get('/', function(req, res) {
 //Models
 const
   models = require("./app/models"),
-
+  
   //Routes
   authRoute = require('./app/routes/auth.js')(app, passport);
 
