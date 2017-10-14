@@ -5,7 +5,9 @@ const TeamListHeader = props => {
   return (
     <thead>
       <tr>
-        <th></th>
+        <th>Player</th>
+        <th>Position</th>
+        <th>Team</th>
       </tr>
     </thead>
   );
