@@ -27,6 +27,7 @@ class PlayersSearch extends Component {
   }
 
   handleInputChange = e => {
+    e.preventDefault();
     this.setState({playerSearch: e.target.value });
   };
 

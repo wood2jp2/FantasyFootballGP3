@@ -12,7 +12,7 @@ class AddPlayers extends React.Component {
     return (
       <form onSubmit={this.handleAddingPlayers.bind(this)}>
         <input
-          value={this.props.playerSearch}
+          value={this.props.search}
           onChange={this.props.handleInputChange}
           name="player"
           list="playersNames"
@@ -21,7 +21,7 @@ class AddPlayers extends React.Component {
           placeholder="Add Players"
           id="player"
         />
-        <datalist id="breeds">
+        <datalist id="playersNames">
           {this.props.playersNames.map(player => <option value={player} key={player} />)}
         </datalist>
         <button>Add</button>
