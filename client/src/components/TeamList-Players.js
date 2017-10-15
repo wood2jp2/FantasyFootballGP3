@@ -3,8 +3,18 @@ import React from "react";
 class TeamListPlayers extends React.Component {
 
   renderPlayersList() {
+    const playersStatsList = [
+      this.props.starterPlayers.name,
+      this.props.starterPlayers.position,
+      this.props.starterPlayers.teamAbbr,
+      this.props.starterPlayers.seasonPts,
+      this.props.starterPlayers.seasonProjectedPts,
+      this.props.starterPlayers.weekProjectedPts];
+
     return(
-      <td>{this.props.starterPlayers}</td>
+      playersStatsList.map((player, index) => (
+        <td key={index}>{player}</td>
+      ))
     );
   }
 

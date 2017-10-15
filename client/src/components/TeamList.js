@@ -4,18 +4,19 @@ import TeamListPlayers from "./TeamList-Players"
 
 class TeamList extends React.Component {
   renderPlayers() {
+    console.log(this.props.playersStats);
     console.log(this.props.starterPlayers);
     return this.props.starterPlayers.map((player, index) =>
       <TeamListPlayers key={index}
-        starterPlayers={player.newplayer}
-        deletePlayer={this.props.deletePlayer.bind(this, player.newplayer)}
+        starterPlayers={player.allplayerStats}
+        deletePlayer={this.props.deletePlayer.bind(this, player.allplayerStats)}
       />
     );
   }
 
   render() {
     return (
-      <table>
+      <table className="table table-bordered table-striped">
         <TeamListHeader />
         <tbody>
           {this.renderPlayers()}
