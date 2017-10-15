@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-import AddPlayers from "./AddPlayers";
-import TeamList from "./TeamList";
-import API from "../utils/API";
+import AddPlayers from "../AddPlayers";
+import Container from "../Wrappers/Container";
+import TeamList from "../TeamList";
+import API from "../../utils/API";
+import "../Wrappers/Container.css";
+import "./PlayersSearch.css";
 
 class PlayersSearch extends Component {
   state = {
@@ -17,8 +20,6 @@ class PlayersSearch extends Component {
       .then(res => {
         const onlyNames = res.data.players.reduce((item, i) =>
         {return [...item, i.name]}, ["Players"]);
-        console.log(res.data.players);
-        console.log(onlyNames);
         this.setState({
           playersNames: onlyNames,
           playersStats: res.data.players
@@ -32,8 +33,11 @@ class PlayersSearch extends Component {
   };
 
   createTeam(newplayer) {
+    const allplayerStats = this.state.playersStats.find( i => {
+      return i.name === newplayer;
+    });
     this.state.starterPlayers.push({
-      newplayer
+      allplayerStats
     });
     this.setState({starterPlayers: this.state.starterPlayers });
     console.log(this.state);
@@ -43,7 +47,7 @@ class PlayersSearch extends Component {
     console.log(delplayer);
     console.log(this.state.starterPlayers);
     const newList = this.state.starterPlayers.filter( player => {
-      return (player.newplayer !== delplayer);
+      return (player.allplayerStats.name !== delplayer.name);
     });
 
     this.setState({starterPlayers: newList });
@@ -53,18 +57,21 @@ class PlayersSearch extends Component {
   render() {
     return(
 //      <AllPlayers results={this.state.playersStats}/>
-      <div>
-        <h2>Starter Players</h2>
-        <AddPlayers
-          createTeam={this.createTeam.bind(this)}
-          handleInputChange={this.handleInputChange}
-          playersNames={this.state.playersNames}
-        />
-        <TeamList
-          starterPlayers={this.state.starterPlayers}
-          deletePlayer={this.deletePlayer.bind(this)}
-        />
-      </div>
+      <Container className="players-table" style={{ minHeight: "100%" }}>
+        <div>
+          <h3>STARTER PLAYERS</h3>
+          <AddPlayers
+            createTeam={this.createTeam.bind(this)}
+            handleInputChange={this.handleInputChange}
+            playersNames={this.state.playersNames}
+          />
+          <TeamList
+            starterPlayers={this.state.starterPlayers}
+            playersStats={this.state.playersStats}
+            deletePlayer={this.deletePlayer.bind(this)}
+          />
+        </div>
+      </Container>
     );
   }
 }

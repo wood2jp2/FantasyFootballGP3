@@ -1,5 +1,5 @@
 import React from "react";
-import PlayersSearch from "./components/PlayersSearch";
+import PlayersSearch from "./components/Search/PlayersSearch";
 
 const App = () => {
   return(
