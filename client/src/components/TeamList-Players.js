@@ -13,7 +13,7 @@ class TeamListPlayers extends React.Component {
 
     return(
       playersStatsList.map((player, index) => (
-        <td key={index}>{player}</td>
+        <td key={index} >{player}</td>
       ))
     );
   }
