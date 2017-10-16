@@ -1,10 +1,16 @@
 .players-table {
-  width: 680px;
+  width: 660px;
   font-family: Courier New, monospace;
-  color: rgba(255, 255, 255, 0.4);
+  font-size: 10px;
+  color: #FFFFFF;
   margin: 20px 20px;
-  background-color: #2b2a2a;
+  background-color: #43464B;
   padding: 10px;
+}
+
+table {
+  width: 100%;
+  margin-bottom: 0 !important;
 }
 
 th {
@@ -13,7 +19,7 @@ th {
 
 td {
   text-align: center;
-  vertical-align: middle;
+  vertical-align: middle !important;
 }
 
 tr {
