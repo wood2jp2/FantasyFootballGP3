@@ -36,20 +36,30 @@ class PlayersSearch extends Component {
     const allplayerStats = this.state.playersStats.find( i => {
       return i.name === newplayer;
     });
-    this.state.starterPlayers.push({
-      allplayerStats
-    });
-    this.setState({starterPlayers: this.state.starterPlayers });
+
+    if (this.state.starterPlayers.length < 9) {
+      this.state.starterPlayers.push({
+        allplayerStats
+      });
+      this.setState({starterPlayers: this.state.starterPlayers });
+    } else {
+      alert("You can only have 9 Starter Players");
+    }
   };
 
   createBenchTeam(newplayer) {
     const allplayerStats = this.state.playersStats.find( i => {
       return i.name === newplayer;
     });
-    this.state.benchPlayers.push({
-      allplayerStats
-    });
-    this.setState({benchPlayers: this.state.benchPlayers });
+
+    if (this.state.benchPlayers.length < 6) {
+      this.state.benchPlayers.push({
+        allplayerStats
+      });
+      this.setState({benchPlayers: this.state.benchPlayers });
+    } else {
+        alert("You can only have 6 Bench Players");
+    }
   };
 
   deletePlayer(delplayer) {
@@ -80,7 +90,7 @@ class PlayersSearch extends Component {
             deletePlayer={this.deletePlayer.bind(this)}
           />
         </div>
-        
+
         <div>
           <h3>BENCH PLAYERS</h3>
           <AddPlayers
