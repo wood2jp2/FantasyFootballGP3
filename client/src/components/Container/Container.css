@@ -5,7 +5,7 @@
   color: #FFFFFF;
   margin: 20px 20px;
   background-color: #43464B;
-  padding: 10px;
+  padding: 0 10px 10px 10px;
 }
 
 table {
@@ -27,6 +27,7 @@ tr {
 }
 
 h3 {
+  padding-top: 10px;
   margin: auto 0;
   color: #FFFFFF;
 }

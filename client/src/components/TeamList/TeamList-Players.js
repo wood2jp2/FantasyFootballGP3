@@ -4,12 +4,12 @@ class TeamListPlayers extends React.Component {
 
   renderPlayersList() {
     const playersStatsList = [
-      this.props.starterPlayers.name,
-      this.props.starterPlayers.position,
-      this.props.starterPlayers.teamAbbr,
-      (this.props.starterPlayers.seasonPts).toFixed(2),
-      (this.props.starterPlayers.seasonProjectedPts).toFixed(2),
-      (this.props.starterPlayers.weekProjectedPts).toFixed(2)];
+      this.props.teamPlayers.name,
+      this.props.teamPlayers.position,
+      this.props.teamPlayers.teamAbbr,
+      (this.props.teamPlayers.seasonPts).toFixed(2),
+      (this.props.teamPlayers.seasonProjectedPts).toFixed(2),
+      (this.props.teamPlayers.weekProjectedPts).toFixed(2)];
 
     return(
       playersStatsList.map((player, index) => (
@@ -18,7 +18,7 @@ class TeamListPlayers extends React.Component {
     );
   }
 
-  renderOptions() {
+  renderEditOptions() {
     return(
       <td>
         <button onClick={this.props.deletePlayer}>Delete</button>
@@ -30,7 +30,7 @@ class TeamListPlayers extends React.Component {
     return(
       <tr>
         {this.renderPlayersList()}
-        {this.renderOptions()}
+        {this.renderEditOptions()}
       </tr>
     );
   }
