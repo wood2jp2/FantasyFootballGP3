@@ -7,9 +7,9 @@ class TeamListPlayers extends React.Component {
       this.props.starterPlayers.name,
       this.props.starterPlayers.position,
       this.props.starterPlayers.teamAbbr,
-      this.props.starterPlayers.seasonPts,
-      this.props.starterPlayers.seasonProjectedPts,
-      this.props.starterPlayers.weekProjectedPts];
+      (this.props.starterPlayers.seasonPts).toFixed(2),
+      (this.props.starterPlayers.seasonProjectedPts).toFixed(2),
+      (this.props.starterPlayers.weekProjectedPts).toFixed(2)];
 
     return(
       playersStatsList.map((player, index) => (

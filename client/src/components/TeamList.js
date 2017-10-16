@@ -16,7 +16,7 @@ class TeamList extends React.Component {
 
   render() {
     return (
-      <table className="table table-bordered table-striped">
+      <table className="table table-inverse">
         <TeamListHeader />
         <tbody>
           {this.renderPlayers()}

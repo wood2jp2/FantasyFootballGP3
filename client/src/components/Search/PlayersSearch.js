@@ -57,7 +57,7 @@ class PlayersSearch extends Component {
   render() {
     return(
 //      <AllPlayers results={this.state.playersStats}/>
-      <Container className="players-table" style={{ minHeight: "100%" }}>
+      <Container className="players-table" >
         <div>
           <h3>STARTER PLAYERS</h3>
           <AddPlayers
