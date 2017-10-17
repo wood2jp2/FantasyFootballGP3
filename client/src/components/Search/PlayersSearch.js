@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import AddPlayers from "../AddPlayers";
-import Container from "../Wrappers/Container";
-import TeamList from "../TeamList";
+import AddPlayers from "../AddPlayers/AddPlayers";
+import Container from "../Container/Container";
+import TeamList from "../TeamList/TeamList";
 import API from "../../utils/API";
-import "../Wrappers/Container.css";
+import "../Container/Container.css";
 import "./PlayersSearch.css";
 
 class PlayersSearch extends Component {
@@ -32,15 +32,34 @@ class PlayersSearch extends Component {
     this.setState({playerSearch: e.target.value });
   };
 
-  createTeam(newplayer) {
+  createStarterTeam(newplayer) {
     const allplayerStats = this.state.playersStats.find( i => {
       return i.name === newplayer;
     });
+
+    if (this.state.starterPlayers.length < 9) {
     this.state.starterPlayers.push({
       allplayerStats
     });
     this.setState({starterPlayers: this.state.starterPlayers });
-    console.log(this.state);
+    } else {
+      alert("You can only have 9 Starter Players");
+    }
+  };
+
+  createBenchTeam(newplayer) {
+    const allplayerStats = this.state.playersStats.find( i => {
+      return i.name === newplayer;
+    });
+
+    if (this.state.benchPlayers.length < 6) {
+      this.state.benchPlayers.push({
+        allplayerStats
+      });
+      this.setState({benchPlayers: this.state.benchPlayers });
+    } else {
+        alert("You can only have 6 Bench Players");
+    }
   };
 
   deletePlayer(delplayer) {
@@ -61,12 +80,26 @@ class PlayersSearch extends Component {
         <div>
           <h3>STARTER PLAYERS</h3>
           <AddPlayers
-            createTeam={this.createTeam.bind(this)}
+            createTeam={this.createStarterTeam.bind(this)}
             handleInputChange={this.handleInputChange}
             playersNames={this.state.playersNames}
           />
           <TeamList
-            starterPlayers={this.state.starterPlayers}
+            teamPlayers={this.state.starterPlayers}
+            playersStats={this.state.playersStats}
+            deletePlayer={this.deletePlayer.bind(this)}
+          />
+        </div>
+
+        <div>
+          <h3>BENCH PLAYERS</h3>
+          <AddPlayers
+            createTeam={this.createBenchTeam.bind(this)}
+            handleInputChange={this.handleInputChange}
+            playersNames={this.state.playersNames}
+          />
+          <TeamList
+            teamPlayers={this.state.benchPlayers}
             playersStats={this.state.playersStats}
             deletePlayer={this.deletePlayer.bind(this)}
           />

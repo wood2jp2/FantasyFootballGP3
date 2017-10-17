@@ -4,22 +4,29 @@ import TeamListPlayers from "./TeamList-Players"
 
 class TeamList extends React.Component {
   renderPlayers() {
-    console.log(this.props.playersStats);
-    console.log(this.props.starterPlayers);
-    return this.props.starterPlayers.map((player, index) =>
+    return this.props.teamPlayers.map((player, index) =>
       <TeamListPlayers key={index}
-        starterPlayers={player.allplayerStats}
+        teamPlayers={player.allplayerStats}
         deletePlayer={this.props.deletePlayer.bind(this, player.allplayerStats)}
       />
     );
   }
 
+  renderSubmitToDatabase() {
+    return(
+      <div>
+        <button onClick={this.props.submitTeam}>Submit</button>
+      </div>
+    );
+  }
+
   render() {
     return (
-      <table className="table table-bordered table-striped">
+      <table className="table table-inverse">
         <TeamListHeader />
         <tbody>
           {this.renderPlayers()}
+          {this.renderSubmitToDatabase()}
         </tbody>
       </table>
     );
