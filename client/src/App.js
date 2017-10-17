@@ -1,4 +1,16 @@
 import React from "react";
+<<<<<<< HEAD
+import PlayersSearch from "./components/PlayersSearch";
+import SignupComponent from './components/Signup';
+import SigninComponent from './components/Signin';
+
+const App = () => {
+  return(
+    <div>
+      <PlayersSearch />
+      <SigninComponent />
+    </div>
+=======
 // import SignupComponent from './components/Signup';
 import SigninComponent from './components/Signin';
 import PlayersSearch from "./components/Search/PlayersSearch";
@@ -20,6 +32,7 @@ const App = () => {
         <Footer />
       </div>
     </Router>
+>>>>>>> c8ea6bd2d464d9c6082ff0d661ec897189406624
   );
 };
 
