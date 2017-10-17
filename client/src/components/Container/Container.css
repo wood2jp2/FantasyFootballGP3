@@ -1,0 +1,41 @@
+.players-table {
+  width: 660px;
+  font-family: Courier New, monospace;
+  font-size: 10px;
+  color: #FFFFFF;
+  margin: 20px 20px;
+  background-color: #43464B;
+  padding: 0 10px 10px 10px;
+}
+
+table {
+  width: 100%;
+  margin-bottom: 0 !important;
+}
+
+th {
+  text-align: center;
+}
+
+td {
+  text-align: center;
+  vertical-align: middle !important;
+}
+
+tr {
+  height: 30px;
+}
+
+h3 {
+  padding-top: 10px;
+  margin: auto 0;
+  color: #FFFFFF;
+}
+
+input {
+  color: black;
+}
+
+button {
+  color: black;
+}

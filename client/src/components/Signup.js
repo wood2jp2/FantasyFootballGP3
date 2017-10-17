@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Component } from "react";
 // import API from "../utils/API";
 //
@@ -48,3 +49,40 @@ class SignupComponent extends React.Component {
 }
 
 export default SignupComponent
+=======
+// import React, { Component } from "react";
+// import API from "../utils/API";
+//
+// class SignupComponent extends React.Component {
+//
+//   state = {
+//     username: '',
+//     password: '',
+//     email: ''
+//   }
+//
+//   handleChange = e => {
+//     this.setState({
+//       [e.target.name]: e.target.value
+//     })
+//   }
+//
+//   render() {
+//     <div>
+//     <input
+//       name='username'
+//       value={this.state.username}
+//       onChange= {this.handleChange}
+//     />
+//    <input
+//       name='password'
+//       value={this.state.password}
+//       onChange= {this.handleChange}
+//    />
+//    <button onClick={() => {
+//      this.attemptSignup
+//    }}> Signup! </button>
+//    </div>
+//   }
+// }
+>>>>>>> c8ea6bd2d464d9c6082ff0d661ec897189406624
