@@ -57,7 +57,7 @@ class PlayersSearch extends Component {
   render() {
     return(
 //      <AllPlayers results={this.state.playersStats}/>
-      <Container className="players-table" style={{ minHeight: "100%" }}>
+      <container className="players-table" style={{ minHeight: "100%" }}>
         <div>
           <h3>STARTER PLAYERS</h3>
           <AddPlayers
@@ -71,7 +71,7 @@ class PlayersSearch extends Component {
             deletePlayer={this.deletePlayer.bind(this)}
           />
         </div>
-      </Container>
+      </container>
     );
   }
 }

@@ -1,11 +1,18 @@
 import React from "react";
+import AddPlayers from "../AddPlayers";
+import Container from "../Wrappers/Container";
+import TeamList from "../TeamList";
+import API from "../../utils/API";
+import "../Wrappers/Container.css";
+import "./PlayersSearch.css";
+
 
 const AllPlayers = props => {
 
   return (
     <div>
       <h3>NFL</h3>
-      <table>
+      <table class ="striped bordered">
         <thead>
           <tr>
             <th>Starters</th>

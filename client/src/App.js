@@ -3,9 +3,11 @@ import PlayersSearch from "./components/Search/PlayersSearch";
 
 const App = () => {
   return(
-    <div>
-      <PlayersSearch />
-    </div>
+    <body>
+      <div class = "container">
+        <PlayersSearch />
+      </div>
+    </body>
   );
 };
 
