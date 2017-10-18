@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-
+import axios from 'axios';
 
 class SigninComponent extends Component {
   constructor(){
     super();
     this.state = {
       authenticated: false,
-      username: '',
+      email: '',
       password: ''
     }
   }
@@ -15,15 +15,26 @@ class SigninComponent extends Component {
     this.setState({
       [e.target.name]: e.target.value
     });
+    console.log(this.state)
+    }
+
+  attemptSignin = () => {
+    const {email, password} = this.state;
+    axios.post('/signin', {
+      email,
+      password
+    }).then(response => {
+      console.log(response);
+    })
   }
 
   render() {
     return (
     <div className='signin'>
-    <h1>Username</h1>
+    <h1>Email</h1>
     <input
-      name='username'
-      value={this.state.username}
+      name='email'
+      value={this.state.email}
       onChange={this.handleChange}
       />
     <h1>Password</h1>
@@ -34,7 +45,7 @@ class SigninComponent extends Component {
       onChange={this.handleChange}
     />
     <button onClick={() => {
-      this.attemptLogin
+      this.attemptSignin()
     }}> Sign in! </button>
     </div>
   )

@@ -43,9 +43,19 @@ const
 //load passport strategies
 require('./app/config/passport/passport.js')(passport, models.user);
 
-app.post('/signup', passport.authenticate('local-signup'), function() {
-  console.log('asdf');
+app.post('/signup', passport.authenticate('local-signup', {
+  successRedirect: '/',
+  failureRedirect: '/signin'
+}));
+
+app.get('/', function(req, res) {
+  res.redirect('/signin')
 });
+
+app.post('/signin', passport.authenticate('local-signin', {
+  successRedirect: '/',
+  failureRedirect: '/signin'
+}));
 
 //Sync Database
 models.sequelize.sync().then(function() {
