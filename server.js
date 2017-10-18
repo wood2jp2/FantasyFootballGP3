@@ -6,7 +6,7 @@ const
   bodyParser = require('body-parser'),
   env = require('dotenv').load(),
   exphbs = require('express-handlebars'),
-  port = process.env.PORT || 5000;
+  port = process.env.PORT || 3001;
 
 //For BodyParser
 app.use(bodyParser.urlencoded({
@@ -35,13 +35,17 @@ app.set('view engine', '.html');
 
 //Models
 const
-  models = require("./app/models"),
+  models = require("./app/models");
 
   //Routes
-  authRoute = require('./app/routes/auth.js')(app, passport);
+  // authRoute = require('./app/routes/auth.js')(app, passport);
 
 //load passport strategies
 require('./app/config/passport/passport.js')(passport, models.user);
+
+app.post('/signup', passport.authenticate('local-signup'), function() {
+  console.log('asdf');
+});
 
 //Sync Database
 models.sequelize.sync().then(function() {

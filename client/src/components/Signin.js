@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+
 class SigninComponent extends Component {
   constructor(){
     super();
@@ -14,7 +15,6 @@ class SigninComponent extends Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-    console.log(this.state)
   }
 
   render() {

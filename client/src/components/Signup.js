@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import axios from 'axios';
 
 class SignupComponent extends React.Component {
 
   state = {
-    firstName: '',
-    lastName: '',
+    firstname: '',
+    lastname: '',
     email: '',
     password: '',
     confirmPassword: ''
@@ -14,7 +15,19 @@ class SignupComponent extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-    console.log(this.state);
+  }
+
+  attemptSignup = () => {
+
+    const {firstname, lastname, email, password} = this.state;
+    axios.post('/signup', {
+      firstname,
+      lastname,
+      email,
+      password
+    }).then(response => {
+        console.log(response);
+    })
   }
 
   render() {
@@ -22,14 +35,14 @@ class SignupComponent extends React.Component {
     <div className='signup'>
       <h4>First Name</h4>
       <input
-        name='firstName'
-        value={this.state.firstName}
+        name='firstname'
+        value={this.state.firstname}
         onChange={this.handleChange}
         />
         <h4>Last Name</h4>
         <input
-          name='lastName'
-          value={this.state.lastName}
+          name='lastname'
+          value={this.state.lastname}
           onChange={this.handleChange}
           />
           <h4>Email</h4>
@@ -53,7 +66,7 @@ class SignupComponent extends React.Component {
      onChange={this.handleChange}
    />
    <button onClick={() => {
-     this.attemptSignup
+     this.attemptSignup()
    }}> Signup! </button>
    </div>
  )
