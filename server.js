@@ -34,6 +34,7 @@ app.engine('html', exphbs({
 app.set('view engine', '.html');
 
 app.get('/fml', (req, res) => {
+  console.log(req.isAuthenticated());
   res.send({'lmao': 'fml'});
 });
 
