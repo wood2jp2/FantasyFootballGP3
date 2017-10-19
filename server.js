@@ -43,8 +43,12 @@ const
 //load passport strategies
 require('./app/config/passport/passport.js')(passport, models.user);
 
+app.get('/fml', function(req, res) {
+  res.send('asdfdsadsadsadf')
+});
+
 app.post('/signup', passport.authenticate('local-signup', {
-  successRedirect: '/',
+  successRedirect: '/teammanager',
   failureRedirect: '/signin'
 }));
 
@@ -53,7 +57,7 @@ app.get('/', function(req, res) {
 });
 
 app.post('/signin', passport.authenticate('local-signin', {
-  successRedirect: '/',
+  successRedirect: '/fml',
   failureRedirect: '/signin'
 }));
 

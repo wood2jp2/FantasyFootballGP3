@@ -17,18 +17,18 @@ class SignupComponent extends React.Component {
     });
   }
 
-  // attemptSignup = () => {
-  //
-  //   const {firstname, lastname, email, password} = this.state;
-  //   axios.post('/signup', {
-  //     firstname,
-  //     lastname,
-  //     email,
-  //     password
-  //   }).then(response => {
-  //       console.log(response);
-  //   })
-  // }
+  attemptSignup = () => {
+
+    const {firstname, lastname, email, password} = this.state;
+    axios.post('/signup', {
+      firstname,
+      lastname,
+      email,
+      password
+    }).then(response => {
+        console.log(response);
+    })
+  }
 
   render() {
     return (
@@ -51,7 +51,6 @@ class SignupComponent extends React.Component {
       value={this.state.email}
       onChange= {this.handleChange}
     />
-
     <h4>Password</h4>
    <input
       name='password'
