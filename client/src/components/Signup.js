@@ -27,9 +27,7 @@ class SignupComponent extends React.Component {
       email,
       password
     }).then(response => {
-      axios.get('/fml').then(data => {
-        console.log(data);
-      })
+      this.props.history.push('/');
     })
   }
 

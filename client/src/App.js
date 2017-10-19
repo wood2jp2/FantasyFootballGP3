@@ -7,6 +7,7 @@ import Wrapper from "./components/Wrapper/Wrapper";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import SignupComponent from './components/Signup';
+import LoggedInHomepage from './LoggedInHomepage';
 
 const App = () => {
   return(
@@ -14,7 +15,7 @@ const App = () => {
       <div>
         <Navbar />
         <Wrapper>
-          <Route exact path="/" component={SigninComponent} />
+          <Route exact path="/" component={LoggedInHomepage} />
           <Route exact path="/signin" component={SigninComponent} />
           <Route exact path='/signup' component={SignupComponent} />
           <Route exact path="/teammanager" component={PlayersSearch} />
