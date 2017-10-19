@@ -5,7 +5,6 @@ class SigninComponent extends Component {
   constructor(){
     super();
     this.state = {
-      authenticated: false,
       email: '',
       password: ''
     }
@@ -15,7 +14,6 @@ class SigninComponent extends Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-    console.log(this.state)
     }
 
   attemptSignin = () => {
@@ -24,7 +22,8 @@ class SigninComponent extends Component {
       email,
       password
     }).then(response => {
-      console.log(response);
+      this.props.onSuccess(response.email);
+      this.props.history.push('/welcome');
     })
   }
 

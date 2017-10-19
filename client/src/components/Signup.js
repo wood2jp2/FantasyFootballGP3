@@ -26,7 +26,8 @@ class SignupComponent extends React.Component {
       email,
       password
     }).then(response => {
-        console.log(response);
+        this.props.onSuccess(response.email);
+        this.props.history.push('/welcome');
     })
   }
 

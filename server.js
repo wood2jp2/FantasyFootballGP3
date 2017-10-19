@@ -34,8 +34,7 @@ app.engine('html', exphbs({
 app.set('view engine', '.html');
 
 //Models
-const
-  models = require("./app/models");
+const models = require("./app/models");
 
   //Routes
   // authRoute = require('./app/routes/auth.js')(app, passport);
@@ -43,23 +42,27 @@ const
 //load passport strategies
 require('./app/config/passport/passport.js')(passport, models.user);
 
-app.get('/fml', function(req, res) {
-  res.send('asdfdsadsadsadf')
+app.get('/fml', (req, res) => {
+  console.log(req.isAuthenticated());
+  res.send({'lmao': 'fml'});
 });
 
-app.post('/signup', passport.authenticate('local-signup', {
-  successRedirect: '/teammanager',
-  failureRedirect: '/signin'
-}));
+app.post('/signup', passport.authenticate('local-signup'), (req, res) => {
+  res.send('/welcome')
+});
+
+// app.post('/signup', passport.authenticate('local-signup', {
+//   successRedirect: '/teammanager',
+//   failureRedirect: '/signin'
+// }));
 
 app.get('/', function(req, res) {
   res.redirect('/signin')
 });
 
-app.post('/signin', passport.authenticate('local-signin', {
-  successRedirect: '/fml',
-  failureRedirect: '/signin'
-}));
+app.post('/signin', passport.authenticate('local-signin'), function(req, res) {
+  res.send(req.body);
+});
 
 //Sync Database
 models.sequelize.sync().then(function() {
