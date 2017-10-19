@@ -37,7 +37,9 @@ app.get('/fml', (req, res) => {
   res.send({'lmao': 'fml'});
 });
 
-app.post('/signup', passport.authenticate('local-signup'));
+app.post('/signup', passport.authenticate('local-signup'), (req, res) => {
+  res.send(req.body);
+});
 
 //Models
 const

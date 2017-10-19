@@ -20,27 +20,16 @@ class SignupComponent extends React.Component {
 
   attemptSignup = () => {
     const {firstName, lastName, email, password} = this.state;
-    console.log({
-      firstName,
-      lastName,
-      email,
-      password
-    });
 
-    // axios.get('/fml', {
-    //   firstName,
-    //   lastName,
-    //   email,
-    //   password
-    // });
-    //
     axios.post('/signup', {
-      firstName,
-      lastName,
+      firstname: firstName,
+      lastname: lastName,
       email,
       password
     }).then(response => {
-
+      axios.get('/fml').then(data => {
+        console.log(data);
+      })
     })
   }
 
