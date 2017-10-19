@@ -11,14 +11,18 @@ module.exports = function(app, passport) {
     res.sendFile(path.join(__dirname, '../views/home.html'))
   });
 
-  app.get('/signup', authController.signup);
+  // app.get('/signup', authController.signup);
+  //
+  // app.get('/signin', authController.signin);
+  console.log('FML');
+  app.post('/signup', (req, res, next) => {
+    console.log('iuhasfdiusdafuhiasudhfiusahd');
 
-  app.get('/signin', authController.signin);
-
-  app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/dashboard',
-    failureRedirect: '/signup'
-  }));
+    // return passport.authenticate('local-signup', {
+    //   successRedirect: '/dashboard',
+    //   failureRedirect: '/signup'
+    // })(req, res, next);
+  });
 
   app.get('/dashboard', isLoggedIn, authController.dashboard);
 

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from 'axios';
 
 class SignupComponent extends React.Component {
 
@@ -15,6 +16,32 @@ class SignupComponent extends React.Component {
       [e.target.name]: e.target.value
     });
     console.log(this.state);
+  }
+
+  attemptSignup = () => {
+    const {firstName, lastName, email, password} = this.state;
+    console.log({
+      firstName,
+      lastName,
+      email,
+      password
+    });
+
+    // axios.get('/fml', {
+    //   firstName,
+    //   lastName,
+    //   email,
+    //   password
+    // });
+    //
+    axios.post('/signup', {
+      firstName,
+      lastName,
+      email,
+      password
+    }).then(response => {
+
+    })
   }
 
   render() {
@@ -53,7 +80,7 @@ class SignupComponent extends React.Component {
      onChange={this.handleChange}
    />
    <button onClick={() => {
-     this.attemptSignup
+     this.attemptSignup();
    }}> Signup! </button>
    </div>
  )

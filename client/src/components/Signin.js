@@ -34,7 +34,7 @@ class SigninComponent extends Component {
       onChange={this.handleChange}
     />
     <button onClick={() => {
-      this.attemptLogin
+      this.attemptLogin();
     }}> Sign in! </button>
     </div>
   )
