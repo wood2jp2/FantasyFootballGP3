@@ -8,6 +8,7 @@ import WelcomeHomepage from './Welcome'
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import SignupComponent from './components/Signup';
+import FailedLog from './components/Fail';
 
 class App extends React.Component {
   state = {
@@ -40,15 +41,17 @@ class App extends React.Component {
             }} />
           }} />
 
-          {
-            this.state.authenticated &&
-            <Route exact path="/teammanager" component={PlayersSearch} />
-          }
-
+            {this.state.authenticated &&
+              <Route exact path="/teammanager" component={PlayersSearch} />
+            }
+              {/* <Route exact path="/failedLogin" component={FailedLog} /> */}
 
             {this.state.authenticated &&
               <Route exact path='/welcome' component={WelcomeHomepage} />
             }
+
+            <Route exact path='/FailedLog' component={FailedLog} />
+            
           </Wrapper>
           <Footer />
         </div>

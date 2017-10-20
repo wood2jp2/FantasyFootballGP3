@@ -28,6 +28,8 @@ class SignupComponent extends React.Component {
     }).then(response => {
         this.props.onSuccess(response.email);
         this.props.history.push('/welcome');
+    }).catch(response => {
+      this.props.history.push('/FailedLog');
     })
   }
 
