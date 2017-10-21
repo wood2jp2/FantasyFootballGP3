@@ -7,28 +7,44 @@ const Navbar = props =>
     <div className="container-fluid">
       <div className="navbar-header">
         <Link className="navbar-brand" to="/">Fantasy Football GM</Link>
-      </div>
-      <ul className="nav navbar-nav">
-        <li className={
-          window.location.pathname === "/" ||
-          window.location.pathname === "/signin"
-            ? "active"
-            : ""}
-          ><Link to="/">Sign in</Link>
-        </li>
-        <li
-          className={window.location.pathname === "/signup" ? "active" : ""}
-          ><Link to="/signup">Sign up</Link>
-        </li>
-        <li
-          className={window.location.pathname === "/teammanager" ? "active" : ""}
-          ><Link to="/teammanager">Team Manager</Link>
-        </li>
-        <li
-          className={window.location.pathname === "/player_rankings" ? "active" : ""}
-          ><Link to="/player_rankings">Player Rankings</Link>
-        </li>
-      </ul>
+        </div>
+
+
+<ul className="nav navbar-nav">
+        {
+          !props.authenticated ? (
+
+            <div>
+            <li className={
+              window.location.pathname === "/" ||
+              window.location.pathname === "/signin"
+                ? "active"
+                : ""}
+              ><Link to="/signin">Sign in</Link>
+            </li>
+            <li
+              className={window.location.pathname === "/signup" ? "active" : ""}
+              ><Link to="/signup">Sign up</Link>
+            </li>
+          </div>
+
+        ) : (
+
+          <div>
+          <li
+            className={window.location.pathname === "/teammanager" ? "active" : ""}
+            ><Link to="/teammanager">Team Manager</Link>
+          </li>
+          <li
+            className={window.location.pathname === "/playerRankings" ? "active" : ""}
+            ><Link to="/playerRankings">Player Rankings</Link>
+          </li>
+        </div>
+
+        )
+        }
+          </ul>
+
     </div>
   </nav>;
 

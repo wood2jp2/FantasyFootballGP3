@@ -85,6 +85,14 @@ app.post('/signin', passport.authenticate('local-signin'), function(req, res) {
   res.send(req.body);
 });
 
+app.get('/signout', function(req, res) {
+  console.log(req.body);
+  req.session.destroy(function(err) {
+    res.json('You signed out!')
+  })
+}
+);
+
 //Sync Database
 models.sequelize.sync().then(function() {
   console.log('Nice! Database looks fine')

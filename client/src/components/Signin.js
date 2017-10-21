@@ -19,6 +19,7 @@ class SigninComponent extends Component {
 
   attemptSignin = () => {
     const {email, password} = this.state;
+    // console.log(this.state); // working properly
     axios.post('/signin', {
       email,
       password
@@ -26,7 +27,8 @@ class SigninComponent extends Component {
       this.setState({
         signinFail: false
       });
-      this.props.onSuccess(response.email);
+      console.log(response.data.email);
+      this.props.onSuccess(response.data.email);
       this.props.history.push('/teammanager');
     }).catch(response => {
       this.setState({
