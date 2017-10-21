@@ -1,12 +1,13 @@
 import React, { Component } from "react";
+import axios from 'axios';
 
 class SigninComponent extends Component {
   constructor(){
     super();
     this.state = {
-      authenticated: false,
-      username: '',
-      password: ''
+      email: '',
+      password: '',
+      signinFail: false
     }
   }
 
@@ -14,16 +15,33 @@ class SigninComponent extends Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-    console.log(this.state)
+    }
+
+  attemptSignin = () => {
+    const {email, password} = this.state;
+    axios.post('/signin', {
+      email,
+      password
+    }).then(response => {
+      this.setState({
+        signinFail: false
+      });
+      this.props.onSuccess(response.email);
+      this.props.history.push('/teammanager');
+    }).catch(response => {
+      this.setState({
+        signinFail: true
+      });
+    })
   }
 
   render() {
     return (
     <div className='signin'>
-    <h1>Username</h1>
+    <h1>Email</h1>
     <input
-      name='username'
-      value={this.state.username}
+      name='email'
+      value={this.state.email}
       onChange={this.handleChange}
       />
     <h1>Password</h1>
@@ -34,10 +52,16 @@ class SigninComponent extends Component {
       onChange={this.handleChange}
     />
     <button onClick={() => {
-      this.attemptLogin
+      this.attemptSignin()
     }}> Sign in! </button>
+    {
+      this.state.signinFail &&
+      <h1>You've entered an incorrect username and or password! Try again or go to our signup page</h1>
+    }
     </div>
   )
  }
+
+
 }
 export default SigninComponent

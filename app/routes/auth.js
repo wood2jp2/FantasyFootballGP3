@@ -11,9 +11,9 @@ module.exports = function(app, passport) {
     res.sendFile(path.join(__dirname, '../views/home.html'))
   });
 
-  app.get('/signup', authController.signup);
-
-  app.get('/signin', authController.signin);
+  // app.get('/signup', authController.signup);
+  //
+  // app.get('/signin', authController.signin);
 
   app.post('/signup', passport.authenticate('local-signup', {
     successRedirect: '/dashboard',
