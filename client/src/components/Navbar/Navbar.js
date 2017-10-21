@@ -17,8 +17,16 @@ const Navbar = props =>
           ><Link to="/">Sign in</Link>
         </li>
         <li
+          className={window.location.pathname === "/signup" ? "active" : ""}
+          ><Link to="/signup">Sign up</Link>
+        </li>
+        <li
           className={window.location.pathname === "/teammanager" ? "active" : ""}
           ><Link to="/teammanager">Team Manager</Link>
+        </li>
+        <li
+          className={window.location.pathname === "/player_rankings" ? "active" : ""}
+          ><Link to="/player_rankings">Player Rankings</Link>
         </li>
       </ul>
     </div>
