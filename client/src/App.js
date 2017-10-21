@@ -51,7 +51,7 @@ class App extends React.Component {
             }
 
             <Route exact path='/FailedLog' component={FailedLog} />
-            
+
           </Wrapper>
           <Footer />
         </div>

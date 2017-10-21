@@ -27,6 +27,9 @@ class SignupComponent extends React.Component {
       email,
       password
     }).then(response => {
+        this.setState({
+          signupFail: false
+        });
         this.props.onSuccess(response.email);
         this.props.history.push('/welcome');
     }).catch(response => {
@@ -76,7 +79,7 @@ class SignupComponent extends React.Component {
    }}> Signup! </button>
 
    {this.state.signupFail &&
-     <p>Yo fucked up pal!</p>
+     <h3>One of the fields contains invalid data. Please ensure that you entered your email and other information correctly!</h3>
    }
    </div>
  )

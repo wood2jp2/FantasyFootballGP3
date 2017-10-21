@@ -7,7 +7,7 @@ class SigninComponent extends Component {
     this.state = {
       email: '',
       password: '',
-      
+      signinFail: false
     }
   }
 
@@ -23,10 +23,15 @@ class SigninComponent extends Component {
       email,
       password
     }).then(response => {
+      this.setState({
+        signinFail: false
+      });
       this.props.onSuccess(response.email);
-      this.props.history.push('/welcome');
+      this.props.history.push('/teammanager');
     }).catch(response => {
-      this.props.history.push('/FailedLog');
+      this.setState({
+        signinFail: true
+      });
     })
   }
 
@@ -49,8 +54,14 @@ class SigninComponent extends Component {
     <button onClick={() => {
       this.attemptSignin()
     }}> Sign in! </button>
+    {
+      this.state.signinFail &&
+      <h1>You've entered an incorrect username and or password! Try again or go to our signup page</h1>
+    }
     </div>
   )
  }
+
+
 }
 export default SigninComponent
