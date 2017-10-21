@@ -6,7 +6,17 @@ const
   bodyParser = require('body-parser'),
   env = require('dotenv').load(),
   exphbs = require('express-handlebars'),
+  nodemailer = require('nodemailer'),
   port = process.env.PORT || 3001;
+
+// create reusable transporter object using the default SMTP transport
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'GWFantasyFootballApp@gmail.com',
+    pass: 'gwfantasy'
+  }
+});
 
 //For BodyParser
 app.use(bodyParser.urlencoded({
@@ -48,13 +58,24 @@ app.get('/fml', (req, res) => {
 });
 
 app.post('/signup', passport.authenticate('local-signup'), (req, res) => {
-  res.send('/welcome')
+  res.send('/welcome');
+  var mailOptions = {
+      from: 'GWFantasyFootballApp@gmail.com', // sender address
+      to: `${req.body.email}`, // list of receivers
+      subject: 'Thanks for signing up!', // Subject line
+      text: `Thank you for signing up to FantasyFootballGP3, ${req.body.firstname}`, // plaintext body
+      html: `Thank you for signing up to FantasyFootballGP3, ${req.body.firstname}! \
+            Please feel free to explore our app and let us know if there's anything \
+            we can further do to enhance your user experience! \
+            Thank you from the team at FantasyFootballGP3.` // html body
+  };
+  transporter.sendMail(mailOptions, function(error, info){
+      if(error){
+          return console.log(error);
+      }
+      console.log('Message sent: ' + info.response);
+  });
 });
-
-// app.post('/signup', passport.authenticate('local-signup', {
-//   successRedirect: '/teammanager',
-//   failureRedirect: '/signin'
-// }));
 
 app.get('/', function(req, res) {
   res.redirect('/signin')

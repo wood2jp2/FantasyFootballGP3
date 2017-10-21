@@ -8,7 +8,8 @@ class SignupComponent extends React.Component {
     lastname: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    signupFail: false
   }
 
   handleChange = e => {
@@ -29,7 +30,9 @@ class SignupComponent extends React.Component {
         this.props.onSuccess(response.email);
         this.props.history.push('/welcome');
     }).catch(response => {
-      this.props.history.push('/FailedLog');
+      this.setState({
+        signupFail: true
+      })
     })
   }
 
@@ -71,6 +74,10 @@ class SignupComponent extends React.Component {
    <button onClick={() => {
      this.attemptSignup()
    }}> Signup! </button>
+
+   {this.state.signupFail &&
+     <p>Yo fucked up pal!</p>
+   }
    </div>
  )
   }
