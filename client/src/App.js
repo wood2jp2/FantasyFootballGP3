@@ -1,7 +1,7 @@
 import React from "react";
-// import SignupComponent from './components/Signup';
 import SigninComponent from './components/Signin';
 import PlayersSearch from "./components/Search/PlayersSearch";
+import PlayerRankings from "./components/Rankings/PlayerRankings";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Wrapper from "./components/Wrapper/Wrapper";
 import WelcomeHomepage from './Welcome'
@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import SignupComponent from './components/Signup';
 import FailedLog from './components/Fail';
+
 
 class App extends React.Component {
   state = {
