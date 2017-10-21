@@ -3,16 +3,18 @@ import AddPlayers from "../AddPlayers/AddPlayers";
 import Container from "../Container/Container";
 import TeamList from "../TeamList/TeamList";
 import API from "../../utils/API";
-import "../Container/Container.css";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { loadSearchUpdate, loadApidataUpdate, loadStarterUpdate, loadBenchUpdate } from "../../actions/rankings-layout-actions";
 import "./PlayersSearch.css";
 
 class PlayersSearch extends Component {
-  state = {
-    playerSearch: "",
-    playersNames: [],
-    playersStats: [],
-    starterPlayers: [],
-    benchPlayers: []
+  constructor(props) {
+    super(props);
+    this.loadSearchUpdate = props.loadSearchUpdate;
+    this.loadApidataUpdate = props.loadApidataUpdate;
+    this.loadStarterUpdate = props.loadStarterUpdate;
+    this.loadBenchUpdate = props.loadBenchUpdate;
   };
 
   componentDidMount() {
@@ -20,7 +22,7 @@ class PlayersSearch extends Component {
       .then(res => {
         const onlyNames = res.data.players.reduce((item, i) =>
         {return [...item, i.name]}, ["Players"]);
-        this.setState({
+        this.loadApidataUpdate({
           playersNames: onlyNames,
           playersStats: res.data.players
         })})
@@ -29,48 +31,55 @@ class PlayersSearch extends Component {
 
   handleInputChange = e => {
     e.preventDefault();
-    this.setState({playerSearch: e.target.value });
+    this.loadSearchUpdate({playerSearch: e.target.value });
   };
 
   createStarterTeam(newplayer) {
-    const allplayerStats = this.state.playersStats.find( i => {
+    const allplayerStats = this.props.playersStats.find( i => {
       return i.name === newplayer;
     });
 
-    if (this.state.starterPlayers.length < 9) {
-      this.state.starterPlayers.push({
+    if (this.props.starterPlayers.length < 9) {
+      this.props.starterPlayers.push({
         allplayerStats
       });
-      this.setState({starterPlayers: this.state.starterPlayers });
+      this.loadStarterUpdate({starterPlayers: this.props.starterPlayers });
+      console.log("New Starter player just updated the store");
     } else {
       alert("You can only have 9 Starter Players");
     }
   };
 
   createBenchTeam(newplayer) {
-    const allplayerStats = this.state.playersStats.find( i => {
+    const allplayerStats = this.props.playersStats.find( i => {
       return i.name === newplayer;
     });
 
-    if (this.state.benchPlayers.length < 6) {
-      this.state.benchPlayers.push({
+    if (this.props.benchPlayers.length < 6) {
+      this.props.benchPlayers.push({
         allplayerStats
       });
-      this.setState({benchPlayers: this.state.benchPlayers });
+      this.loadBenchUpdate({benchPlayers: this.props.benchPlayers });
+      console.log("New Bench player just updated the store");
     } else {
         alert("You can only have 6 Bench Players");
     }
   };
 
-  deletePlayer(delplayer) {
-    console.log(delplayer);
-    console.log(this.state.starterPlayers);
-    const newList = this.state.starterPlayers.filter( player => {
+  deleteStarterPlayer(delplayer) {
+    const newList = this.props.starterPlayers.filter( player => {
       return (player.allplayerStats.name !== delplayer.name);
     });
 
-    this.setState({starterPlayers: newList });
-    console.log(this.state);
+    this.loadStarterUpdate({starterPlayers: newList });
+  };
+
+  deleteBenchPlayer(delplayer) {
+    const newList = this.props.benchPlayers.filter( player => {
+      return (player.allplayerStats.name !== delplayer.name);
+    });
+
+    this.loadBenchUpdate({benchPlayers: newList });
   };
 
   render() {
@@ -82,12 +91,12 @@ class PlayersSearch extends Component {
           <AddPlayers
             createTeam={this.createStarterTeam.bind(this)}
             handleInputChange={this.handleInputChange}
-            playersNames={this.state.playersNames}
+            playersNames={this.props.playersNames}
           />
           <TeamList
-            teamPlayers={this.state.starterPlayers}
-            playersStats={this.state.playersStats}
-            deletePlayer={this.deletePlayer.bind(this)}
+            teamPlayers={this.props.starterPlayers}
+            playersStats={this.props.playersStats}
+            deletePlayer={this.deleteStarterPlayer.bind(this)}
           />
         </div>
 
@@ -96,12 +105,12 @@ class PlayersSearch extends Component {
           <AddPlayers
             createTeam={this.createBenchTeam.bind(this)}
             handleInputChange={this.handleInputChange}
-            playersNames={this.state.playersNames}
+            playersNames={this.props.playersNames}
           />
           <TeamList
-            teamPlayers={this.state.benchPlayers}
-            playersStats={this.state.playersStats}
-            deletePlayer={this.deletePlayer.bind(this)}
+            teamPlayers={this.props.benchPlayers}
+            playersStats={this.props.playersStats}
+            deletePlayer={this.deleteBenchPlayer.bind(this)}
           />
         </div>
       </Container>
@@ -109,4 +118,18 @@ class PlayersSearch extends Component {
   }
 }
 
-export default PlayersSearch;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({loadSearchUpdate, loadApidataUpdate, loadStarterUpdate, loadBenchUpdate}, dispatch);
+};
+
+const mapStateToProps = (state) => {
+  return {
+    playerSearch: state.playerSearch,
+    playersNames: state.playersNames,
+    playersStats: state.playersStats,
+    starterPlayers: state.starterPlayers,
+    benchPlayers: state.benchPlayers
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlayersSearch);

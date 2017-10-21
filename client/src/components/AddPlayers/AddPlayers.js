@@ -2,10 +2,11 @@ import React from "react";
 
 class AddPlayers extends React.Component {
 
-  handleAddingPlayers(e) {
+  handleAddingPlayers = e => {
     e.preventDefault();
-    this.props.createTeam(this.refs.playerInput.value);
-    this.refs.playerInput.value = "";
+    this.props.createTeam(this.refs.search.value);
+    this.refs.search.value = "";
+    console.log("Just pressed a button");
   }
 
   render() {
@@ -16,7 +17,7 @@ class AddPlayers extends React.Component {
           onChange={this.props.handleInputChange}
           name="player"
           list="playersNames"
-          ref="playerInput"
+          ref="search"
           type="text"
           placeholder="Add Players"
           id="player"
