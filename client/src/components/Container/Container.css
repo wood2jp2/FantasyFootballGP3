@@ -1,16 +1,18 @@
 .players-table {
-  width: 660px;
-  font-family: Courier New, monospace;
+  width: 1000px;
+  font-family: Roboto;
   font-size: 10px;
-  color: #FFFFFF;
+  color:steelblue;
   margin: 20px 20px;
-  background-color: #43464B;
+  background-color: transparent;
   padding: 0 10px 10px 10px;
 }
 
 table {
   width: 100%;
   margin-bottom: 0 !important;
+  font-size: 18px;
+  color:cadetblue;
 }
 
 th {
@@ -20,22 +22,25 @@ th {
 td {
   text-align: center;
   vertical-align: middle !important;
+  color: steelblue;
 }
 
 tr {
-  height: 30px;
+  height: 20px;
 }
 
 h3 {
   padding-top: 10px;
+  font-family: sans-serif;
+  font-weight: bolder;
   margin: auto 0;
-  color: #FFFFFF;
+  color: steelblue;
 }
 
 input {
-  color: black;
+  color: dodgerblue;
 }
 
 button {
-  color: black;
+  color:darkgreen;
 }

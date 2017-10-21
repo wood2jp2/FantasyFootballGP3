@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import "materialize-css";
+import "react-materialize";
+
 
 class SignupComponent extends React.Component {
 

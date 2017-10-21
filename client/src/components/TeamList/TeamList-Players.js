@@ -1,4 +1,6 @@
 import React from "react";
+import "materialize-css";
+import "react-materialize";
 
 class TeamListPlayers extends React.Component {
 

@@ -1,4 +1,5 @@
-nav.navbar.navbar-default {
-  font-family: Courier New, monospace;
+ nav.navbar.navbar-default {
+  font-family: Roboto, monospace;
+  color:darkblue;
   margin-bottom: 0;
 }

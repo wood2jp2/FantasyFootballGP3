@@ -1,4 +1,6 @@
 import React from "react";
+import "materialize-css";
+import "react-materialize";
 import AddPlayers from "../AddPlayers";
 import Container from "../Wrappers/Container";
 import TeamList from "../TeamList";

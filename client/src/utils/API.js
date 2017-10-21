@@ -1,4 +1,6 @@
 import axios from "axios";
+import "materialize-css";
+import "react-materialize";
 
 const weekx = 4;
 const seasonx = 2017;

@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import "materialize-css";
+import "react-materialize";
 import AddPlayers from "../AddPlayers/AddPlayers";
 import Container from "../Container/Container";
 import TeamList from "../TeamList/TeamList";
@@ -77,8 +79,8 @@ class PlayersSearch extends Component {
     return(
 //      <AllPlayers results={this.state.playersStats}/>
       <container className="players-table" style={{ minHeight: "100%" }}>
-        <div>
-          <h3>STARTER PLAYERS</h3>
+        <div className= "players-table grey lighten-2">
+          <h3>STARTERS</h3>
           <AddPlayers
             createTeam={this.createStarterTeam.bind(this)}
             handleInputChange={this.handleInputChange}
@@ -91,8 +93,8 @@ class PlayersSearch extends Component {
           />
         </div>
 
-        <div>
-          <h3>BENCH PLAYERS</h3>
+        <div className= "players-table grey lighten-2">
+          <h3>BENCH</h3>
           <AddPlayers
             createTeam={this.createBenchTeam.bind(this)}
             handleInputChange={this.handleInputChange}

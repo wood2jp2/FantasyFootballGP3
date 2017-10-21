@@ -1,4 +1,7 @@
 import React from "react";
+import "materialize-css";
+import "react-materialize";
+import "./App.css";
 // import SignupComponent from './components/Signup';
 import SigninComponent from './components/Signin';
 import PlayersSearch from "./components/Search/PlayersSearch";
@@ -8,8 +11,11 @@ import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import SignupComponent from './components/Signup';
 
+
 const App = () => {
   return(
+
+
     <Router>
       <div>
         <Navbar />
@@ -17,7 +23,7 @@ const App = () => {
           <Route exact path="/" component={SigninComponent} />
           <Route exact path="/signin" component={SigninComponent} />
           <Route exact path='/signup' component={SignupComponent} />
-          <Route exact path="/teammanager" component={PlayersSearch} />
+          <Route exact path="/myteams" component={PlayersSearch} />
         </Wrapper>
         <Footer />
       </div>

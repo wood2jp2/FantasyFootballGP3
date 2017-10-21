@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import {Button} from "react-materialize";
+import "materialize-css";
+import "react-materialize";
 
 class SigninComponent extends Component {
   constructor(){
@@ -20,23 +23,26 @@ class SigninComponent extends Component {
   render() {
     return (
     <div className='signin'>
-    <h1>Username</h1>
-    <input
-      name='username'
-      value={this.state.username}
-      onChange={this.handleChange}
+      <p className="flow-text grey-text text-darken-4">Username</p>
+      <input
+        name='username'
+        value={this.state.username}
+        onChange={this.handleChange}
+        />
+      <p className="flow-text grey-text text-darken-4">Password</p>
+      <input
+        name='password'
+        type='password'
+        value={this.state.password}
+        onChange={this.handleChange}
       />
-    <h1>Password</h1>
-    <input
-      name='password'
-      type='password'
-      value={this.state.password}
-      onChange={this.handleChange}
-    />
-    <button onClick={() => {
-      this.attemptLogin
-    }}> Sign in! </button>
+
+
+      <Button onClick={() => {
+        this.attemptLogin
+      }}> Sign in! </Button>
     </div>
+
   )
  }
 }
