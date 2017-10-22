@@ -11,25 +11,10 @@ class SignoutComponent extends React.Component {
     }
   }
 
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  }
-
   attemptSignout = () => {
-    const {email} = this.state.email;
+    // const {email} = this.state.email;
     console.log(this.state.email);
-    axios.get('/signout', {
-      email: 'wood2jp2@gmail.com'
-    }).then(response => {
-      console.log('signing out');
-        this.setState({
-          signoutSuccess: true,
-          email: ''
-        });
-        this.props.history.push('/signin');
-      })
+    this.props.onSuccess();
   }
 
   render() {

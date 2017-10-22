@@ -86,12 +86,20 @@ app.post('/signin', passport.authenticate('local-signin'), function(req, res) {
 });
 
 app.get('/signout', function(req, res) {
-  console.log(req.body);
+  models.User.find({
+    email: req.user.email
+  }, function(err, doc) {
+    if (err) {
+      console.log(err)
+    } else {
+      res.json(doc)
+    }
+  });
   req.session.destroy(function(err) {
-    res.json('You signed out!')
+    res.json('You signed out!');
+    console.log(req.session);
   })
-}
-);
+});
 
 //Sync Database
 models.sequelize.sync().then(function() {

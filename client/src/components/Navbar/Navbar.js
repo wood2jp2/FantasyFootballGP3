@@ -39,6 +39,10 @@ const Navbar = props =>
             className={window.location.pathname === "/playerRankings" ? "active" : ""}
             ><Link to="/playerRankings">Player Rankings</Link>
           </li>
+          <li
+            className={window.location.pathname === "/signout" ? "active" : ""}
+            ><Link to='/signout'>Sign Out</Link>
+          </li>
         </div>
 
         )

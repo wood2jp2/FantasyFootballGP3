@@ -10,6 +10,7 @@ import Footer from "./components/Footer/Footer";
 import SignupComponent from './components/Signup';
 import SignoutComponent from './components/Signout';
 import FailedLog from './components/Fail';
+import axios from 'axios';
 
 class App extends React.Component {
   state = {
@@ -44,18 +45,26 @@ class App extends React.Component {
               }} />;
             }} />
 
-            <Route exact path='/signout' render={(props) => {
-              return <SignoutComponent email={this.state.userEmail} {...props} onSuccess={(email) => {
+            <Route exact path='/signout' something={this} render={(props) => {
+              const email = this.state.userEmail;
+              console.log(email);
+              return <SignoutComponent {...props} onSuccess={() => {
+                axios.get('/signout', {
+                    email: email
+              }).then(response => {
+                console.log('signing out');
                 this.setState({
                   authenticated: false,
                   userEmail: ''
-                })
-              }} />;
+                });
+                props.history.push('/signin');
+              }
+            )}
+          } />;
             }} />
 
-            {/* <Route exact path='/logout' render=/> */}
-
             <Route exact path='/signup' render={(props) => {
+              console.log('asdfdsas');
             return <SignupComponent {...props} onSuccess={(email) => {
               this.setState({
                 authenticated: true,
