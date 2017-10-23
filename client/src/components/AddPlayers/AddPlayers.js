@@ -1,20 +1,27 @@
 import React from "react";
+import store from "../../Store";
 
 class AddPlayers extends React.Component {
 
-  handleAddingPlayers = e => {
+  handleInputChange = (e) => {
     e.preventDefault();
-    this.props.createTeam(this.refs.search.value);
-    this.refs.search.value = "";
-    console.log("Just pressed a button");
-  }
+    this.props.addPlayer({playerSearch: e.target.value });
+  };
 
-  render() {
+  handlePayloadAction = (evt) => {
+    evt.preventDefault();
+    const selectedPlayer = store.getState().playerSearch;
+    this.props.createTeam(selectedPlayer);
+    this.props.addPlayer(this.props.newPlayer);
+    this.refs.search.value = "";
+  };
+
+  render(){
     return (
-      <form onSubmit={this.handleAddingPlayers.bind(this)}>
+      <form onSubmit={this.handlePayloadAction}>
         <input
           value={this.props.search}
-          onChange={this.props.handleInputChange}
+          onChange={this.handleInputChange}
           name="player"
           list="playersNames"
           ref="search"
@@ -23,12 +30,12 @@ class AddPlayers extends React.Component {
           id="player"
         />
         <datalist id="playersNames">
-          {this.props.playersNames.map(player => <option value={player} key={player} />)}
+            {this.props.playersNames.map((player, index) => <option value={player} key={index} />)}
         </datalist>
-        <button>Add</button>
+        <button type="submit">Add</button>
       </form>
     );
-  };
+  }
 };
 
 export default AddPlayers;
