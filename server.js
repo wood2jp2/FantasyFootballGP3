@@ -144,10 +144,9 @@ app.listen(port, function(err) {
 
 app.get('/scrape', (req, res) => {
 
-
-
   request('https://www.cbssports.com/nfl/injuries', (err, response, html) => {
     const $ = cheerio.load(html);
+    var allResults = [];
     $('.row1,.row2').each(function(i, element) {
       var result = {};
       result.name=$(this).find('a').text();
@@ -155,9 +154,20 @@ app.get('/scrape', (req, res) => {
       result.status=$(this).find('td:nth-child(5)').text();
       result.news=$(this).find('td:nth-child(6)').text();
       result.injury=$(this).find('td:nth-child(4)').text();
-      console.log(result);
-    })
+      allResults.push(result);
+      // Injury.create({
+      //   name: result.name,
+      //   position: result.position,
+      //   status: result.status,
+      //   news: result.news,
+      //   injury: result.injury
+      // }).then(function(){
+      //   console.log(result)
+      // })
+    });
+    res.json(allResults)
   });
+
   });
   // request('http://www.espn.com/nfl/injuries', function(err, response, html) {
   //   const $ = cheerio.load(html);
