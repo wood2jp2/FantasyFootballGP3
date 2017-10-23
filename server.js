@@ -10,27 +10,27 @@ const
   mongoose = require('mongoose'),
   request = require('request'),
   cheerio = require('cheerio'),
+  sequelize = require('sequelize'),
   localServer = "mongodb://localhost:27017/InjuryScrape2",
-  InjuryUpdate = require('./app/MongoSearch/model/InjuryUpdate'),
+  // InjuryUpdate = require('./app/MongoSearch/model/InjuryUpdate'),
+  Injury = require('./app/models/InjuryUpdate.js')
   getTwitter = require('./app/TwitterScrape/twitterScrape'),
-  db = mongoose.connection,
+  // db = mongoose.connection,
   port = process.env.PORT || 3001;
 
 // const mongoose.promise = Promise;
 
-mongoose.connect(localServer, {
-  useMongoClient: true
-});
+// mongoose.connect(localServer, {
+//   useMongoClient: true
+// });
 
-db.on('error', function(err) {
-  console.log('Database Error:', err)
-});
-
-db.once('open', function() {
-  console.log('Mongoose connection successful')
-});
-
-
+// db.on('error', function(err) {
+//   console.log('Database Error:', err)
+// });
+//
+// db.once('open', function() {
+//   console.log('Mongoose connection successful')
+// });
 
 // create reusable transporter object using the default SMTP transport
 var transporter = nodemailer.createTransport({
@@ -80,7 +80,7 @@ app.get('/fml', (req, res) => {
   res.send({'lmao': 'fml'});
 });
 
-app.get('/twitterScrape', function(req, res) {
+app.get('/twitterScrape', (req, res) => {
   getTwitter.getTwitter();
 });
 
@@ -96,7 +96,7 @@ app.post('/signup', passport.authenticate('local-signup'), (req, res) => {
             we can further do to enhance your user experience! \
             Thank you from the team at FantasyFootballGP3.` // html body
   };
-  transporter.sendMail(mailOptions, function(error, info){
+  transporter.sendMail(mailOptions, (error, info) => {
       if(error){
           return console.log(error);
       }
@@ -104,15 +104,15 @@ app.post('/signup', passport.authenticate('local-signup'), (req, res) => {
   });
 });
 
-app.get('/', function(req, res) {
+app.get('/', (req, res) => {
   res.redirect('/signin')
 });
 
-app.post('/signin', passport.authenticate('local-signin'), function(req, res) {
+app.post('/signin', passport.authenticate('local-signin'), (req, res) => {
   res.send(req.body);
 });
 
-app.get('/signout', function(req, res) {
+app.get('/signout', (req, res) => {
   // models.User.find({
   //   email: req.user.email
   // }, function(err, doc) {
@@ -142,34 +142,53 @@ app.listen(port, function(err) {
   else console.log(err)
 });
 
-app.get('/scrape', function(req, res) {
-  request('http://www.espn.com/nfl/injuries', function(err, response, html) {
+app.get('/scrape', (req, res) => {
+
+
+
+  request('https://www.cbssports.com/nfl/injuries', (err, response, html) => {
     const $ = cheerio.load(html);
-    $('.oddrow,.evenrow').each(function(i, element) {
+    $('.row1,.row2').each(function(i, element) {
       var result = {};
-      if (i % 2 === 0) {
-        result.name=$(this).find('a').text();
-        positionIsolation=$(this).find('td:first-of-type').text().split(' ');
-        result.position=positionIsolation[positionIsolation.length-1];
-        result.status=$(this).find('td:nth-child(2)').text();
-        result.date=$(this).find('td:last-child').text();
-
-        var entry = new InjuryUpdate(result);
-
-        entry.save(function(err, doc) {
-          if (err) {
-            console.log(err)
-          } else {
-            console.log(doc)
-          }
-        });
-      };
-    });
+      result.name=$(this).find('a').text();
+      result.position=$(this).find("[align='center']").text();
+      result.status=$(this).find('td:nth-child(5)').text();
+      result.news=$(this).find('td:nth-child(6)').text();
+      result.injury=$(this).find('td:nth-child(4)').text();
+      console.log(result);
+    })
   });
-  res.send('scrape scrape')
-});
+  });
+  // request('http://www.espn.com/nfl/injuries', function(err, response, html) {
+  //   const $ = cheerio.load(html);
+  //   $('.oddrow,.evenrow').each(function(i, element) {
+  //     var result = {};
+  //     if (i % 2 === 0) {
+  //       result.name=$(this).find('a').text();
+  //       positionIsolation=$(this).find('td:first-of-type').text().split(' ');
+  //       result.position=positionIsolation[positionIsolation.length-1];
+  //       result.status=$(this).find('td:nth-child(2)').text();
+  //       result.date=$(this).find('td:last-child').text();
 
-app.get('/injuries', function(req, res) {
+        // var entry = new InjuryUpdate(result);
+
+        // entry.save(function(err, doc) {
+        //   if (err) {
+        //     console.log(err)
+        //   } else {
+        //     console.log(doc)
+        //   }
+        // });
+        // return Injury.create({
+        //   name: result.name,
+        //   position: result.position,
+        //   status: result.status,
+        //   date: result.date
+        // });
+
+
+
+app.get('/injuries', (req, res) => {
   InjuryUpdate.find({}, function(err, doc) {
     if (err) {
       console.log(err)
