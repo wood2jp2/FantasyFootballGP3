@@ -8,8 +8,9 @@ import WelcomeHomepage from './Welcome'
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import SignupComponent from './components/Signup';
+import SignoutComponent from './components/Signout';
 import FailedLog from './components/Fail';
-
+import axios from 'axios';
 
 class App extends React.Component {
   state = {
@@ -21,9 +22,10 @@ class App extends React.Component {
     return(
       <Router>
         <div>
-          <Navbar />
+          <Navbar authenticated={this.state.authenticated} />
           <Wrapper>
-            <Route exact path="/signin" render={(props) => {
+
+            <Route exact path="/" render={(props) => {
               return <SigninComponent {...props} onSuccess={(email) => {
                 this.setState({
                   authenticated: true,
@@ -33,7 +35,36 @@ class App extends React.Component {
               }} />;
             }} />
 
+            <Route exact path="/signin" render={(props) => {
+              return <SigninComponent {...props} onSuccess={(email) => {
+                this.setState({
+                  authenticated: true,
+                  userEmail: email
+                });
+                console.log(this.state);
+              }} />;
+            }} />
+
+            <Route exact path='/signout' something={this} render={(props) => {
+              const email = this.state.userEmail;
+              console.log(email);
+              return <SignoutComponent {...props} onSuccess={() => {
+                axios.get('/signout', {
+                    email: email
+              }).then(response => {
+                console.log('signing out');
+                this.setState({
+                  authenticated: false,
+                  userEmail: ''
+                });
+                props.history.push('/signin');
+              }
+            )}
+          } />;
+            }} />
+
             <Route exact path='/signup' render={(props) => {
+              console.log('asdfdsas');
             return <SignupComponent {...props} onSuccess={(email) => {
               this.setState({
                 authenticated: true,
@@ -42,14 +73,19 @@ class App extends React.Component {
             }} />
           }} />
 
+          {this.state.authenticated &&
+            <Route exact path='/playerRankings' component={PlayerRankings} />
+          }
+
             {this.state.authenticated &&
               <Route exact path="/teammanager" component={PlayersSearch} />
             }
-              {/* <Route exact path="/failedLogin" component={FailedLog} /> */}
 
             {this.state.authenticated &&
               <Route exact path='/welcome' component={WelcomeHomepage} />
             }
+
+
 
             <Route exact path='/FailedLog' component={FailedLog} />
 
