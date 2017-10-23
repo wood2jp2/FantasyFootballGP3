@@ -8,9 +8,12 @@ const
   port = process.env.PORT || 3000,
   InjuryUpdate = require('./MongoSearch/model/InjuryUpdate.js'),
   app = express(),
-  db = mongoose.connection;
+  db = mongoose.connection,
+  getTwitter = require('./TwitterScrape/twitterScrape');
 
 mongoose.promise = Promise;
+
+getTwitter.getTwitter();
 
 app.use(bodyParser.urlencoded({
   extended: false
