@@ -13,7 +13,6 @@ module.exports = {
       if (!err && res.statusCode === 200) {
         for (let i=0; i < 20; i++) {
           console.log(tweets[i].text);
-          console.log(res.send);
         }
       } else {
         console.log(err)

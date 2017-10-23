@@ -7,7 +7,30 @@ const
   env = require('dotenv').load(),
   exphbs = require('express-handlebars'),
   nodemailer = require('nodemailer'),
+  mongoose = require('mongoose'),
+  request = require('request'),
+  cheerio = require('cheerio'),
+  localServer = "mongodb://localhost:27017/InjuryScrape2",
+  InjuryUpdate = require('./app/MongoSearch/model/InjuryUpdate'),
+  getTwitter = require('./app/TwitterScrape/twitterScrape'),
+  db = mongoose.connection,
   port = process.env.PORT || 3001;
+
+// const mongoose.promise = Promise;
+
+mongoose.connect(localServer, {
+  useMongoClient: true
+});
+
+db.on('error', function(err) {
+  console.log('Database Error:', err)
+});
+
+db.once('open', function() {
+  console.log('Mongoose connection successful')
+});
+
+
 
 // create reusable transporter object using the default SMTP transport
 var transporter = nodemailer.createTransport({
@@ -57,6 +80,11 @@ app.get('/fml', (req, res) => {
   res.send({'lmao': 'fml'});
 });
 
+app.get('/twitterScrape', function(req, res) {
+  getTwitter.getTwitter();
+  res.send('twitter scraped');
+});
+
 app.post('/signup', passport.authenticate('local-signup'), (req, res) => {
   res.send('/welcome');
   var mailOptions = {
@@ -86,15 +114,16 @@ app.post('/signin', passport.authenticate('local-signin'), function(req, res) {
 });
 
 app.get('/signout', function(req, res) {
-  models.User.find({
-    email: req.user.email
-  }, function(err, doc) {
-    if (err) {
-      console.log(err)
-    } else {
-      res.json(doc)
-    }
-  });
+  // models.User.find({
+  //   email: req.user.email
+  // }, function(err, doc) {
+  //   if (err) {
+  //     console.log(err)
+  //   } else {
+  //     res.json(doc)
+  //   }
+  // });
+  console.log('bye bye');
   req.session.destroy(function(err) {
     res.json('You signed out!');
     console.log(req.session);
@@ -112,4 +141,41 @@ app.listen(port, function(err) {
   if (!err)
     console.log("Site is live");
   else console.log(err)
+});
+
+app.get('/scrape', function(req, res) {
+  request('http://www.espn.com/nfl/injuries', function(err, response, html) {
+    const $ = cheerio.load(html);
+    $('.oddrow,.evenrow').each(function(i, element) {
+      var result = {};
+      if (i % 2 === 0) {
+        result.name=$(this).find('a').text();
+        positionIsolation=$(this).find('td:first-of-type').text().split(' ');
+        result.position=positionIsolation[positionIsolation.length-1];
+        result.status=$(this).find('td:nth-child(2)').text();
+        result.date=$(this).find('td:last-child').text();
+
+        var entry = new InjuryUpdate(result);
+
+        entry.save(function(err, doc) {
+          if (err) {
+            console.log(err)
+          } else {
+            console.log(doc)
+          }
+        });
+      };
+    });
+  });
+  res.send('scrape scrape')
+});
+
+app.get('/injuries', function(req, res) {
+  InjuryUpdate.find({}, function(err, doc) {
+    if (err) {
+      console.log(err)
+    } else {
+      res.json(doc)
+    }
+  })
 });
