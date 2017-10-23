@@ -82,7 +82,6 @@ app.get('/fml', (req, res) => {
 
 app.get('/twitterScrape', function(req, res) {
   getTwitter.getTwitter();
-  res.send('twitter scraped');
 });
 
 app.post('/signup', passport.authenticate('local-signup'), (req, res) => {
