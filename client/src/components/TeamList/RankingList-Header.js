@@ -1,6 +1,6 @@
 import React from "react";
 
-const TeamListHeader = props => {
+const RankingListHeader = props => {
 
   return (
     <thead>
@@ -16,4 +16,4 @@ const TeamListHeader = props => {
   );
 };
 
-export default TeamListHeader;
+export default RankingListHeader;

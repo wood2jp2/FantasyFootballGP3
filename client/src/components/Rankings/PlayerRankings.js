@@ -27,13 +27,14 @@ class PlayerRankings extends React.Component {
   }
 };
 
-const mapStateToProps = (state) => {
+function mapStateToProps(state) {
   return {
     playerSearch: state.playerSearch,
     playersNames: state.playersNames,
     playersStats: state.playersStats,
     starterPlayers: state.starterPlayers,
-    benchPlayers: state.benchPlayers
+    benchPlayers: state.benchPlayers,
+    payloadContainer: state.payloadContainer
   }
 };
 
