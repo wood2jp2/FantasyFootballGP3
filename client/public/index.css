@@ -1,0 +1,26 @@
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  padding-bottom: 3rem;
+  margin: 0 !important;
+  min-height: 100%;
+}
+
+footer {
+  text-align: center;
+  font-family: Courier New, monospace;
+  background: #B8B8B8;
+  position: absolute;
+  padding: 3px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+footer span {
+  text-align: center;
+}
