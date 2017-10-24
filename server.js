@@ -155,48 +155,12 @@ app.get('/scrape', (req, res) => {
       result.news=$(this).find('td:nth-child(6)').text();
       result.injury=$(this).find('td:nth-child(4)').text();
       allResults.push(result);
-      // Injury.create({
-      //   name: result.name,
-      //   position: result.position,
-      //   status: result.status,
-      //   news: result.news,
-      //   injury: result.injury
-      // }).then(function(){
-      //   console.log(result)
-      // })
-    });
+      models.sequelize.query(`INSERT INTO injuryUpdates(name, position, status, news, injury) VALUES ('${result.name}', '${result.position}', '${result.status}', '${result.news}', '${result.injury}')`);
+      });
     res.json(allResults)
   });
 
   });
-  // request('http://www.espn.com/nfl/injuries', function(err, response, html) {
-  //   const $ = cheerio.load(html);
-  //   $('.oddrow,.evenrow').each(function(i, element) {
-  //     var result = {};
-  //     if (i % 2 === 0) {
-  //       result.name=$(this).find('a').text();
-  //       positionIsolation=$(this).find('td:first-of-type').text().split(' ');
-  //       result.position=positionIsolation[positionIsolation.length-1];
-  //       result.status=$(this).find('td:nth-child(2)').text();
-  //       result.date=$(this).find('td:last-child').text();
-
-        // var entry = new InjuryUpdate(result);
-
-        // entry.save(function(err, doc) {
-        //   if (err) {
-        //     console.log(err)
-        //   } else {
-        //     console.log(doc)
-        //   }
-        // });
-        // return Injury.create({
-        //   name: result.name,
-        //   position: result.position,
-        //   status: result.status,
-        //   date: result.date
-        // });
-
-
 
 app.get('/injuries', (req, res) => {
   InjuryUpdate.find({}, function(err, doc) {
