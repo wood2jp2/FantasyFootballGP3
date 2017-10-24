@@ -9,7 +9,6 @@ const Navbar = props =>
         <Link className="navbar-brand" to="/">Fantasy Football GM</Link>
         </div>
 
-
 <ul className="nav navbar-nav">
         {
           !props.authenticated ? (
@@ -48,7 +47,6 @@ const Navbar = props =>
         )
         }
           </ul>
-
     </div>
   </nav>;
 

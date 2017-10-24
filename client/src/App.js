@@ -84,8 +84,6 @@ class App extends React.Component {
               <Route exact path='/welcome' component={WelcomeHomepage} />
             }
 
-
-
             <Route exact path='/FailedLog' component={FailedLog} />
 
           </Wrapper>
