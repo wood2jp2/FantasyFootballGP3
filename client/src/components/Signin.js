@@ -22,14 +22,14 @@ class SigninComponent extends Component {
 
   render() {
     return (
-    <div className='signin'>
-      <p className="flow-text grey-text text-darken-4">Username</p>
+    <div className='signin Roboto-Black'>
+      <h1 className="flow-text white-text">Username:</h1>
       <input
         name='username'
         value={this.state.username}
         onChange={this.handleChange}
         />
-      <p className="flow-text grey-text text-darken-4">Password</p>
+      <h1 className="flow-text white-text">Password:</h1>
       <input
         name='password'
         type='password'

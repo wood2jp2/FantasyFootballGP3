@@ -4,7 +4,7 @@
   font-size: 10px;
   color:steelblue;
   margin: 20px 20px;
-  background-color: transparent;
+
   padding: 0 10px 10px 10px;
 }
 
@@ -13,6 +13,7 @@ table {
   margin-bottom: 0 !important;
   font-size: 18px;
   color:cadetblue;
+  
 }
 
 th {
@@ -30,7 +31,7 @@ tr {
 }
 
 h3 {
-  padding-top: 10px;
+  padding-top: 15px;
   font-family: sans-serif;
   font-weight: bolder;
   margin: auto 0;
@@ -42,5 +43,5 @@ input {
 }
 
 button {
-  color:darkgreen;
+  color:#365125;
 }

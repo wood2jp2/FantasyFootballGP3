@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import "materialize-css";
 import "react-materialize";
 import "./App.css";
@@ -10,6 +10,7 @@ import Wrapper from "./components/Wrapper/Wrapper";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import SignupComponent from './components/Signup';
+import { Parallax, Background } from 'react-parallax';
 
 
 const App = () => {

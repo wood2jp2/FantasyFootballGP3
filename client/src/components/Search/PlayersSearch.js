@@ -79,7 +79,7 @@ class PlayersSearch extends Component {
     return(
 //      <AllPlayers results={this.state.playersStats}/>
       <container className="players-table" style={{ minHeight: "100%" }}>
-        <div className= "players-table grey lighten-2">
+        <div className= "players-table brown lighten-5">
           <h3>STARTERS</h3>
           <AddPlayers
             createTeam={this.createStarterTeam.bind(this)}
@@ -92,8 +92,10 @@ class PlayersSearch extends Component {
             deletePlayer={this.deletePlayer.bind(this)}
           />
         </div>
-
-        <div className= "players-table grey lighten-2">
+        <br></br>
+        <br></br>
+        <br></br>
+        <div className= "players-table brown lighten-5">
           <h3>BENCH</h3>
           <AddPlayers
             createTeam={this.createBenchTeam.bind(this)}

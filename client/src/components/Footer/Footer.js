@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import "./Footer.css";
 import "materialize-css";
 import "react-materialize";

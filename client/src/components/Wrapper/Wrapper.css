@@ -1,5 +1,15 @@
 .wrapper {
-  min-height: 100%;
-  padding-bottom: 100px;
-  color:darkblue;
+  background-image: url("fieldbackground.jpg");
+  background-size: cover;
+  padding-bottom: 230px;
+  padding-top: 10%;
+}
+
+h1 {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  text-align: left;
+  font-size: 350%;
+
+
+
 }

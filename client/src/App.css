@@ -1,6 +1,7 @@
 .App {
   text-align: center;
-  background-color: aqua;
+  background-color: white;
+
 }
 
 .App-logo {
@@ -16,7 +17,7 @@
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 2em;
 }
 
 .App-intro {

@@ -1,12 +1,12 @@
 .footer {
   text-align: center;
   color:dodgerblue;
+  position: sticky;
 }
 
 .footer span {
   font-family: Roboto-Medium, New, monospace;
   background: #B8B8B8;
-  position: absolute;
   padding: 1px;
   bottom: 0;
   left: 0;
