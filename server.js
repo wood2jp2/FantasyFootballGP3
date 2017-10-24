@@ -14,7 +14,9 @@ const
   localServer = "mongodb://localhost:27017/InjuryScrape2",
   // InjuryUpdate = require('./app/MongoSearch/model/InjuryUpdate'),
   Injury = require('./app/models/InjuryUpdate.js')
-  getTwitter = require('./app/TwitterScrape/twitterScrape'),
+  // getTwitter = require('./app/TwitterScrape/twitterScrape.js'),
+  Twitter = require('twitter'),
+  twitterKeys = require('./app/TwitterScrape/keys').twitterKeys,
   // db = mongoose.connection,
   port = process.env.PORT || 3001;
 
@@ -81,7 +83,30 @@ app.get('/fml', (req, res) => {
 });
 
 app.get('/twitterScrape', (req, res) => {
-  getTwitter.getTwitter();
+  // getTwitter.getTwitter();
+  let client = new Twitter(twitterKeys);
+  let params= {
+    screen_name: 'matthewberrytmr',
+    count: 20
+  };
+  getTwitter = () => {
+    client.get('statuses/user_timeline', params, function(err, tweets, res) {
+    let twitterScrape = {
+      allTweets: []
+    };
+    if (!err && res.statusCode === 200) {
+      for (let i=0; i < 20; i++) {
+        twitterScrape.allTweets.push(tweets[i].text);
+        models.sequelize.query(`INSERT INTO tweets(tweet) VALUES("${tweets[i].text}")`)
+      }
+    } else {
+      console.log(err);
+    };
+    console.log(twitterScrape);
+  })
+};
+res.send('tweeter scrape scrape');
+getTwitter();
 });
 
 app.post('/signup', passport.authenticate('local-signup'), (req, res) => {
