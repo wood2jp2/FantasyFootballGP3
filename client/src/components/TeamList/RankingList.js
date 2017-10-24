@@ -1,13 +1,12 @@
 import React from "react";
-import TeamListHeader from "./RankingList-Header"
-import TeamListPlayers from "./RankingList-Players"
+import RankingListHeader from "./RankingList-Header"
+import RankingListPlayers from "./RankingList-Players"
 
-class TeamList extends React.Component {
+class RankingList extends React.Component {
   renderPlayers() {
-    console.log(this.props.teamPlayers);
     return this.props.teamPlayers.map((player, index) =>
-      <TeamListPlayers key={index}
-        teamPlayers={player.allplayerStats}
+      <RankingListPlayers key={index}
+        teamData={player}
       />
     );
   }
@@ -15,7 +14,7 @@ class TeamList extends React.Component {
   render() {
     return (
       <table className="table table-inverse">
-        <TeamListHeader />
+        <RankingListHeader />
         <tbody>
           {this.renderPlayers()}
         </tbody>
@@ -24,4 +23,4 @@ class TeamList extends React.Component {
   };
 };
 
-export default TeamList;
+export default RankingList;

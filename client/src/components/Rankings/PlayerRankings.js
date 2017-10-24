@@ -8,32 +8,80 @@ class PlayerRankings extends React.Component {
 
   render(){
     return(
-      <Container className="rankings-table" >
-        <div>
-          <h3>STARTER PLAYERS</h3>
-          <RankingList
-            teamPlayers={this.props.starterPlayers}
-          />
-        </div>
+      <Container>
+        <div className="rankings-table" >
+          <div>
+            <h3>STARTER PLAYERS</h3>
+            <RankingList
+              teamPlayers={this.props.starterPlayers}
+            />
+          </div>
 
-        <div>
-          <h3>BENCH PLAYERS</h3>
-          <RankingList
-            teamPlayers={this.props.benchPlayers}
-          />
+          <div>
+            <h3>BENCH PLAYERS</h3>
+            <RankingList
+              teamPlayers={this.props.benchPlayers}
+            />
+          </div>
+        </div>
+        <div className="rankings-table" >
+          <div>
+            <h3>STARTER PLAYERS</h3>
+            <RankingList
+              teamPlayers={this.props.starterPlayers}
+            />
+          </div>
+
+          <div>
+            <h3>BENCH PLAYERS</h3>
+            <RankingList
+              teamPlayers={this.props.benchPlayers}
+            />
+          </div>
+        </div>
+        <div className="rankings-table" >
+          <div>
+            <h3>STARTER PLAYERS</h3>
+            <RankingList
+              teamPlayers={this.props.starterPlayers}
+            />
+          </div>
+
+          <div>
+            <h3>BENCH PLAYERS</h3>
+            <RankingList
+              teamPlayers={this.props.benchPlayers}
+            />
+          </div>
+        </div>
+        <div className="rankings-table" >
+          <div>
+            <h3>STARTER PLAYERS</h3>
+            <RankingList
+              teamPlayers={this.props.starterPlayers}
+            />
+          </div>
+
+          <div>
+            <h3>BENCH PLAYERS</h3>
+            <RankingList
+              teamPlayers={this.props.benchPlayers}
+            />
+          </div>
         </div>
       </Container>
     );
   }
 };
 
-const mapStateToProps = (state) => {
+function mapStateToProps(state) {
   return {
     playerSearch: state.playerSearch,
     playersNames: state.playersNames,
     playersStats: state.playersStats,
     starterPlayers: state.starterPlayers,
-    benchPlayers: state.benchPlayers
+    benchPlayers: state.benchPlayers,
+    payloadContainer: state.payloadContainer
   }
 };
 

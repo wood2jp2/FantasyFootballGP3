@@ -7,8 +7,7 @@ const Navbar = props =>
     <div className="container-fluid">
       <div className="navbar-header">
         <Link className="navbar-brand" to="/">Fantasy Football GM</Link>
-
-
+        </div>
 
 <ul className="nav navbar-nav">
         {
@@ -48,7 +47,6 @@ const Navbar = props =>
         )
         }
           </ul>
-</div>
     </div>
   </nav>;
 

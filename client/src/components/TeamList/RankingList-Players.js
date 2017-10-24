@@ -1,15 +1,15 @@
 import React from "react";
 
-class TeamListPlayers extends React.Component {
+class RankingListPlayers extends React.Component {
 
   renderPlayersList() {
     const playersStatsList = [
-      this.props.teamPlayers.name,
-      this.props.teamPlayers.position,
-      this.props.teamPlayers.teamAbbr,
-      (this.props.teamPlayers.seasonPts).toFixed(2),
-      (this.props.teamPlayers.seasonProjectedPts).toFixed(2),
-      (this.props.teamPlayers.weekProjectedPts).toFixed(2)];
+      this.props.teamData.name,
+      this.props.teamData.position,
+      this.props.teamData.teamAbbr,
+      (this.props.teamData.seasonPts).toFixed(2),
+      (this.props.teamData.seasonProjectedPts).toFixed(2),
+      (this.props.teamData.weekProjectedPts).toFixed(2)];
 
     return(
       playersStatsList.map((player, index) => (
@@ -27,4 +27,4 @@ class TeamListPlayers extends React.Component {
   }
 }
 
-export default TeamListPlayers;
+export default RankingListPlayers;

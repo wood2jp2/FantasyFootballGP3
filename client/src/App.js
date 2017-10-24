@@ -6,11 +6,9 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Wrapper from "./components/Wrapper/Wrapper";
 import WelcomeHomepage from './Welcome'
 import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
 import SignupComponent from './components/Signup';
 import SignoutComponent from './components/Signout';
 import FailedLog from './components/Fail';
-import TwitterFeedComponent from './components/TwitterScrape/TwitterFeed';
 import axios from 'axios';
 
 class App extends React.Component {
@@ -86,12 +84,9 @@ class App extends React.Component {
               <Route exact path='/welcome' component={WelcomeHomepage} />
             }
 
-            <Route exact path='/twitterFeed' component={TwitterFeedComponent} />
-
             <Route exact path='/FailedLog' component={FailedLog} />
 
           </Wrapper>
-          <Footer />
         </div>
       </Router>
     );
