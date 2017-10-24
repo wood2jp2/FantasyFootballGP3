@@ -5,11 +5,13 @@ import TeamListHeader from "./TeamList-Header";
 import TeamListPlayers from "./TeamList-Players";
 
 class TeamList extends React.Component {
+
   renderPlayers() {
+    console.log(this.props.teamPlayers)
     return this.props.teamPlayers.map((player, index) =>
       <TeamListPlayers key={index}
-        teamPlayers={player.allplayerStats}
-        deletePlayer={this.props.deletePlayer.bind(this, player.allplayerStats)}
+        teamData={player}
+        deletePlayer={this.props.deletePlayer.bind(this, player)}
       />
     );
   }
@@ -17,7 +19,7 @@ class TeamList extends React.Component {
   renderSubmitToDatabase() {
     return(
       <div>
-        <button onClick={this.props.submitTeam}>Submit</button>
+        <button onClick={this.submitTeam}>Submit</button>
       </div>
     );
   }

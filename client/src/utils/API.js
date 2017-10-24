@@ -11,3 +11,10 @@ export default {
     return axios.get("http://api.fantasy.nfl.com/v1/players/stats?statType=seasonStats&" + urlx);
   }
 };
+/*
+export default {
+  getPlayersYahoo: function() {
+    return axios.get("http://api.fantasy.nfl.com/v1/players/stats?statType=seasonStats&" + urlx);
+  }
+};
+*/

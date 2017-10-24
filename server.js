@@ -6,7 +6,17 @@ const
   bodyParser = require('body-parser'),
   env = require('dotenv').load(),
   exphbs = require('express-handlebars'),
-  port = process.env.PORT || 5000;
+  nodemailer = require('nodemailer'),
+  port = process.env.PORT || 3001;
+
+// create reusable transporter object using the default SMTP transport
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'GWFantasyFootballApp@gmail.com',
+    pass: 'gwfantasy'
+  }
+});
 
 //For BodyParser
 app.use(bodyParser.urlencoded({
@@ -34,14 +44,46 @@ app.engine('html', exphbs({
 app.set('view engine', '.html');
 
 //Models
-const
-  models = require("./app/models"),
+const models = require("./app/models");
 
   //Routes
-  authRoute = require('./app/routes/auth.js')(app, passport);
+  // authRoute = require('./app/routes/auth.js')(app, passport);
 
 //load passport strategies
 require('./app/config/passport/passport.js')(passport, models.user);
+
+app.get('/fml', (req, res) => {
+  console.log(req.isAuthenticated());
+  res.send({'lmao': 'fml'});
+});
+
+app.post('/signup', passport.authenticate('local-signup'), (req, res) => {
+  res.send('/welcome');
+  var mailOptions = {
+      from: 'GWFantasyFootballApp@gmail.com', // sender address
+      to: `${req.body.email}`, // list of receivers
+      subject: 'Thanks for signing up!', // Subject line
+      text: `Thank you for signing up to FantasyFootballGP3, ${req.body.firstname}`, // plaintext body
+      html: `Thank you for signing up to FantasyFootballGP3, ${req.body.firstname}! \
+            Please feel free to explore our app and let us know if there's anything \
+            we can further do to enhance your user experience! \
+            Thank you from the team at FantasyFootballGP3.` // html body
+  };
+  transporter.sendMail(mailOptions, function(error, info){
+      if(error){
+          return console.log(error);
+      }
+      console.log('Message sent: ' + info.response);
+  });
+});
+
+app.get('/', function(req, res) {
+  res.redirect('/signin')
+});
+
+app.post('/signin', passport.authenticate('local-signin'), function(req, res) {
+  res.send(req.body);
+});
 
 //Sync Database
 models.sequelize.sync().then(function() {

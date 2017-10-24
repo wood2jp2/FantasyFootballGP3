@@ -1,8 +1,6 @@
 import React from "react";
-import "materialize-css";
-import "react-materialize";
 
-class TeamListPlayers extends React.Component {
+class RankingListPlayers extends React.Component {
 
   renderPlayersList() {
     const playersStatsList = [
@@ -20,22 +18,13 @@ class TeamListPlayers extends React.Component {
     );
   }
 
-  renderEditOptions() {
-    return(
-      <td>
-        <button onClick={this.props.deletePlayer}>Delete</button>
-      </td>
-    );
-  }
-
   render() {
     return(
       <tr>
         {this.renderPlayersList()}
-        {this.renderEditOptions()}
       </tr>
     );
   }
 }
 
-export default TeamListPlayers;
+export default RankingListPlayers;
