@@ -12,27 +12,9 @@ const
   cheerio = require('cheerio'),
   sequelize = require('sequelize'),
   localServer = "mongodb://localhost:27017/InjuryScrape2",
-  // InjuryUpdate = require('./app/MongoSearch/model/InjuryUpdate'),
-  Injury = require('./app/models/InjuryUpdate.js')
-  // getTwitter = require('./app/TwitterScrape/twitterScrape.js'),
   Twitter = require('twitter'),
   twitterKeys = require('./app/TwitterScrape/keys').twitterKeys,
-  // db = mongoose.connection,
   port = process.env.PORT || 3001;
-
-// const mongoose.promise = Promise;
-
-// mongoose.connect(localServer, {
-//   useMongoClient: true
-// });
-
-// db.on('error', function(err) {
-//   console.log('Database Error:', err)
-// });
-//
-// db.once('open', function() {
-//   console.log('Mongoose connection successful')
-// });
 
 // create reusable transporter object using the default SMTP transport
 var transporter = nodemailer.createTransport({
@@ -71,9 +53,6 @@ app.set('view engine', '.html');
 //Models
 const models = require("./app/models");
 
-  //Routes
-  // authRoute = require('./app/routes/auth.js')(app, passport);
-
 //load passport strategies
 require('./app/config/passport/passport.js')(passport, models.user);
 
@@ -82,31 +61,16 @@ app.get('/fml', (req, res) => {
   res.send({'lmao': 'fml'});
 });
 
+let client = new Twitter(twitterKeys);
+
 app.get('/twitterScrape', (req, res) => {
-  // getTwitter.getTwitter();
-  let client = new Twitter(twitterKeys);
   let params= {
     screen_name: 'matthewberrytmr',
     count: 20
   };
-  getTwitter = () => {
-    client.get('statuses/user_timeline', params, function(err, tweets, res) {
-    let twitterScrape = {
-      allTweets: []
-    };
-    if (!err && res.statusCode === 200) {
-      for (let i=0; i < 20; i++) {
-        twitterScrape.allTweets.push(tweets[i].text);
-        models.sequelize.query(`INSERT INTO tweets(tweet) VALUES("${tweets[i].text}")`)
-      }
-    } else {
-      console.log(err);
-    };
-    console.log(twitterScrape);
-  })
-};
-res.send('tweeter scrape scrape');
-getTwitter();
+  client.get('statuses/user_timeline', params, function(err, tweets, resp) {
+    res.send(tweets);
+  });
 });
 
 app.post('/signup', passport.authenticate('local-signup'), (req, res) => {
@@ -180,7 +144,7 @@ app.get('/scrape', (req, res) => {
       result.news=$(this).find('td:nth-child(6)').text();
       result.injury=$(this).find('td:nth-child(4)').text();
       allResults.push(result);
-      models.sequelize.query(`INSERT INTO injuryUpdates(name, position, status, news, injury) VALUES ('${result.name}', '${result.position}', '${result.status}', '${result.news}', '${result.injury}')`);
+      // models.sequelize.query(`INSERT INTO injuryUpdates(name, position, status, news, injury) VALUES ('${result.name}', '${result.position}', '${result.status}', '${result.news}', '${result.injury}')`);
       });
     res.json(allResults)
   });
