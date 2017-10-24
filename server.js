@@ -159,8 +159,7 @@ app.get('/scrape', (req, res) => {
       });
     res.json(allResults)
   });
-
-  });
+});
 
 app.get('/injuries', (req, res) => {
   InjuryUpdate.find({}, function(err, doc) {
