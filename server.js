@@ -7,11 +7,9 @@ const
   env = require('dotenv').load(),
   exphbs = require('express-handlebars'),
   nodemailer = require('nodemailer'),
-  mongoose = require('mongoose'),
   request = require('request'),
   cheerio = require('cheerio'),
   sequelize = require('sequelize'),
-  localServer = "mongodb://localhost:27017/InjuryScrape2",
   Twitter = require('twitter'),
   twitterKeys = require('./app/TwitterScrape/keys').twitterKeys,
   port = process.env.PORT || 3001;
