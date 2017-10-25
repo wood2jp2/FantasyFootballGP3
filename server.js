@@ -7,11 +7,9 @@ const
   env = require('dotenv').load(),
   exphbs = require('express-handlebars'),
   nodemailer = require('nodemailer'),
-  mongoose = require('mongoose'),
   request = require('request'),
   cheerio = require('cheerio'),
   sequelize = require('sequelize'),
-  localServer = "mongodb://localhost:27017/InjuryScrape2",
   Twitter = require('twitter'),
   twitterKeys = require('./app/TwitterScrape/keys').twitterKeys,
   port = process.env.PORT || 3001;
@@ -144,7 +142,6 @@ app.get('/scrape', (req, res) => {
       result.news=$(this).find('td:nth-child(6)').text();
       result.injury=$(this).find('td:nth-child(4)').text();
       allResults.push(result);
-      // models.sequelize.query(`INSERT INTO injuryUpdates(name, position, status, news, injury) VALUES ('${result.name}', '${result.position}', '${result.status}', '${result.news}', '${result.injury}')`);
       });
     res.json(allResults)
   });
