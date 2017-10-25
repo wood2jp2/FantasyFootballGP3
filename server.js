@@ -54,11 +54,6 @@ const models = require("./app/models");
 //load passport strategies
 require('./app/config/passport/passport.js')(passport, models.user);
 
-app.get('/fml', (req, res) => {
-  console.log(req.isAuthenticated());
-  res.send({'lmao': 'fml'});
-});
-
 let client = new Twitter(twitterKeys);
 
 app.get('/twitterScrape', (req, res) => {
@@ -144,7 +139,7 @@ app.get('/scrape', (req, res) => {
       allResults.push(result);
       // models.sequelize.query(`INSERT INTO injuryUpdates(name, position, status, news, injury) VALUES ('${result.name}', '${result.position}', '${result.status}', '${result.news}', '${result.injury}')`);
       });
-    res.json(allResults)
+    res.send(allResults)
   });
 });
 
