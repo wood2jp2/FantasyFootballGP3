@@ -9,7 +9,6 @@ import "react-materialize";
 
 
 
-
 ReactDOM.render(
   <Provider store={store}>
     <App />

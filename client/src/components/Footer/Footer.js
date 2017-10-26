@@ -9,17 +9,20 @@ const Footer = () =>
   </footer>;
 */
 
-          <footer className="page-footer blue darken 2">
-            <div className="container">
-              </div>
-
-            <div className="white-text text-md-left footer-copyright blue darken 2">
-              <div className="container">
-              © 2017 GW Fantasy Football GM
-              <a className="white-text right" href="#!">More Fantasy Football Sites</a>
-              </div>
+  <footer className="page-footer blue darken-4">
+    <div className="container">
+      <div className="row">
+          <h5 className="white-text left">Created by Josh Wood | Hernan Tejada | Mike Cherry</h5>
+          </div>
             </div>
-          </footer>
+            
+            <div className="footer-copyright">
+              <div className="container">
+             © 2017 GW Fantasy Football GM
+             <a className="grey-text text-lighten-4 right" href="#!">More Fantasy Football Resources</a>
+             </div>
+           </div>
+         </footer>
 
 
 export default Footer;

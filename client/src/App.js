@@ -29,8 +29,9 @@ class App extends React.Component {
 
     <Router>
       <div>
-          <Navbar authenticated={this.state.authenticated} />
-        <Wrapper>
+        <Navbar authenticated={this.state.authenticated} />
+
+          <Wrapper>
 
             <Route exact path="/" render={(props) => {
               return <SigninComponent {...props} onSuccess={(email) => {
@@ -81,11 +82,11 @@ class App extends React.Component {
           }} />
 
           {this.state.authenticated &&
-            <Route exact path='/playerRankings' component={PlayerRankings} />
+            <Route exact path='/PlayerRankings' component={PlayerRankings} />
           }
 
             {this.state.authenticated &&
-          <Route exact path="/myteams" component={PlayersSearch} />
+          <Route exact path="/teammanager" component={PlayersSearch} />
             }
 
             {this.state.authenticated &&

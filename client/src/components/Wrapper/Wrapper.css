@@ -1,14 +1,14 @@
 .wrapper {
   background-image: url("fieldbackground.jpg");
-  background-size: cover;
-  padding-bottom: 230px;
+  /* background-size: cover; */
+  padding-bottom: 250px;
   padding-top: 10%;
 }
 
 h1 {
   font-family: Verdana, Arial, Helvetica, sans-serif;
   text-align: left;
-  font-size: 350%;
+  font-size: 200%;
 
 
 

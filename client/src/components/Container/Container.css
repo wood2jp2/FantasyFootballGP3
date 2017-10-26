@@ -1,21 +1,23 @@
 .players-table {
   width: 1000px;
   font-family: Roboto;
-  font-size: 10px;
+  font-size: 12px;
   color:steelblue;
-  margin: 20px 20px;
+  margin: 20px;
 
   padding: 0 10px 10px 10px;
 }
 
 .rankings-table {
-  width: 560px;
-  font-family: Courier New, monospace;
-  font-size: 10px;
-  color: #FFFFFF;
-  margin: 20px 20px;
-  background-color: #43464B;
+  width: 1000px;
+  font-family: Roboto;
+  font-size: 18px;
+  color: lightslategrey;
+  margin: 20px;
+  background-color: antiquewhite;
   padding: 0 10px 10px 10px;
+  vertical-align: middle;
+  align-content: center;
 }
 
 table {
@@ -23,7 +25,7 @@ table {
   margin-bottom: 0 !important;
   font-size: 18px;
   color:cadetblue;
-  
+
 }
 
 th {

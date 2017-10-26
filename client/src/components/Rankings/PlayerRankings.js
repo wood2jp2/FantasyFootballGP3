@@ -8,16 +8,17 @@ class PlayerRankings extends React.Component {
 
   render(){
     return(
-      <Container className="rankings-table" >
+      <Container className="rankings-table">
+        <div className="table-responsive"></div>
         <div>
-          <h3>STARTER PLAYERS</h3>
+          <h3>STARTERS</h3>
           <RankingList
             teamPlayers={this.props.starterPlayers}
           />
         </div>
 
         <div>
-          <h3>BENCH PLAYERS</h3>
+          <h3>BENCH</h3>
           <RankingList
             teamPlayers={this.props.benchPlayers}
           />

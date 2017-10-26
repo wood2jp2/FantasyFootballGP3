@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import {Button} from "react-materialize";
-import "materialize-css";
-import "react-materialize";
+import {Button, Forms} from "react-materialize";
+import {Waves} from "materialize-css";
+
 
 class SigninComponent extends Component {
   constructor(){
@@ -42,29 +42,34 @@ class SigninComponent extends Component {
 
   render() {
     return (
-    <div className='signin'>
-    <h1>Email</h1>
+    <div className='signin flow-text white-text'>
+    <h1>Email:</h1>
       <input
       name='email'
       value={this.state.email}
         onChange={this.handleChange}
         />
-      <h1 className="flow-text white-text">Password:</h1>
-      <input
+      <div className="flow-text white-text"></div>
+      <h1>Password:</h1>
+        <input
         name='password'
         type='password'
         value={this.state.password}
         onChange={this.handleChange}
       />
+
+
     <button onClick={() => {
       this.attemptSignin()
     }}> Sign in! </button>
     {
       this.state.signinFail &&
-      <h1>You've entered an incorrect username and or password! Try again or go to our signup page</h1>
+      <h2 className='flow-text white-text'>You've entered an incorrect username and or password!
+      <br></br><br></br>
+      Try again or click on Sign Up above to create an account.</h2>
     }
-    </div>
 
+  </div>
   )
  }
 }

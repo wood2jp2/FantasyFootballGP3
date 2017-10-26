@@ -1,4 +1,4 @@
-.footer {
+/* .footer {
   text-align: center;
   color:dodgerblue;
   position: sticky;
@@ -13,3 +13,15 @@
   right: 0;
   padding: 3px;
 }
+*/
+/* body {
+   display: block;
+   min-height: 100%;
+
+   flex-direction: 0;
+ }
+
+ main {
+   flex: 1 0 auto;
+ }
+*/

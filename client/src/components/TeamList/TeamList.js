@@ -1,6 +1,6 @@
 import React from "react";
 import "materialize-css";
-import "react-materialize";
+import {Button, Icon} from "react-materialize";
 import TeamListHeader from "./TeamList-Header";
 import TeamListPlayers from "./TeamList-Players";
 

@@ -1,30 +1,30 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import "./Navbar.css";
 import "materialize-css";
 import "react-materialize";
-import { Parallax } from "react-materialize";
 
 const Navbar = props =>
-  <nav>
-    <ul className="nav-wrapper blue darken 4">
-        <li><Link to="/ " className="brand-logo left">GW's Fantasy Football Virtual GM</Link></li>
-      <ul className="right hide-on-med-and-down">
-        {
+  <nav className="nav-wrapper blue darken-4">
+    <div className="container-fluid">
+      <div className="navbar-header">
+        <Link className="brand-logo" to="/">Fantasy Football GM</Link>
+        </div>
+
+          <ul className="right nav navbar-nav">
+            {
           !props.authenticated ? (
 
-            <div>
+          <div>
             <li className={
               window.location.pathname === "/" ||
               window.location.pathname === "/signin"
                 ? "active"
                 : ""}
-              ><Link to="/signin">Sign in</Link>
-        <li><Link to="/myteams">My Teams</Link></li>
+              ><Link to="/signin">Sign In</Link>
             </li>
-            <li
-              className={window.location.pathname === "/signup" ? "active" : ""}
-              ><Link to="/signup">Sign up</Link>
+            <li className={window.location.pathname === "/signup" ? "active" : ""}
+              ><Link to="/signup">Sign Up</Link>
             </li>
           </div>
 
@@ -33,12 +33,11 @@ const Navbar = props =>
           <div>
           <li
             className={window.location.pathname === "/teammanager" ? "active" : ""}
-        <li><Link to="/socialmedia">Social Media</Link></li>
+            ><Link to="/teammanager">Team Manager</Link>
           </li>
           <li
             className={window.location.pathname === "/playerRankings" ? "active" : ""}
             ><Link to="/playerRankings">Player Rankings</Link>
-        <li><Link to="/news">Player News</Link></li>
           </li>
           <li
             className={window.location.pathname === "/signout" ? "active" : ""}
@@ -48,9 +47,8 @@ const Navbar = props =>
 
         )
         }
-      </ul>
-
+          </ul>
+    </div>
   </nav>;
-  
 
 export default Navbar;
