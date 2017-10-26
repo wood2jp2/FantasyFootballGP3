@@ -41,7 +41,7 @@ const Navbar = props =>
               </li>
               <li
                 className={window.location.pathname === "/twitter" ? "active" : ""}
-                ><Link to="/twitter">Twiteer</Link>
+                ><Link to="/twitter">Twitter</Link>
               </li>
               <li
                 className={window.location.pathname === "/injuries" ? "active" : ""}
