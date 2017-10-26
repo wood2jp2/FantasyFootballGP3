@@ -8,6 +8,8 @@ import WelcomeHomepage from './Welcome'
 import Navbar from "./components/Navbar/Navbar";
 import SignupComponent from './components/Signup';
 import SignoutComponent from './components/Signout';
+import TwitterFeedComponent from './components/TwitterScrape/TwitterFeed';
+import InjuryComponent from './components/InjuryScrape/InjuryComponent';
 import FailedLog from './components/Fail';
 import axios from 'axios';
 
@@ -83,6 +85,9 @@ class App extends React.Component {
             {this.state.authenticated &&
               <Route exact path='/welcome' component={WelcomeHomepage} />
             }
+
+               <Route exact path='/twitter' component={TwitterFeedComponent} />
+               <Route exact path='/injuries' component={InjuryComponent} />
 
             <Route exact path='/FailedLog' component={FailedLog} />
 
