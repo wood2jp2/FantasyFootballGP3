@@ -137,7 +137,6 @@ app.get('/scrape', (req, res) => {
       result.news=$(this).find('td:nth-child(6)').text();
       result.injury=$(this).find('td:nth-child(4)').text();
       allResults.push(result);
-      // models.sequelize.query(`INSERT INTO injuryUpdates(name, position, status, news, injury) VALUES ('${result.name}', '${result.position}', '${result.status}', '${result.news}', '${result.injury}')`);
       });
     res.send(allResults)
   });

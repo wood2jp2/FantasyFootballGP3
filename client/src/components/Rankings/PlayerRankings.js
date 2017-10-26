@@ -10,7 +10,37 @@ class PlayerRankings extends React.Component {
     return(
       <Container>
         <div className="rankings-table" >
-      <div>
+          <div>
+            <h3>STARTER PLAYERS</h3>
+            <RankingList
+              teamPlayers={this.props.starterPlayers}
+            />
+          </div>
+
+          <div>
+            <h3>BENCH PLAYERS</h3>
+            <RankingList
+              teamPlayers={this.props.benchPlayers}
+            />
+          </div>
+        </div>
+        <div className="rankings-table" >
+          <div>
+            <h3>STARTER PLAYERS</h3>
+            <RankingList
+              teamPlayers={this.props.starterPlayers}
+            />
+          </div>
+
+          <div>
+            <h3>BENCH PLAYERS</h3>
+            <RankingList
+              teamPlayers={this.props.benchPlayers}
+            />
+          </div>
+        </div>
+        <div className="rankings-table" >
+          <div>
             <h3>STARTER PLAYERS</h3>
             <RankingList
               teamPlayers={this.props.starterPlayers}
@@ -79,6 +109,7 @@ function mapStateToProps(state) {
     playerSearch: state.playerSearch,
     playersNames: state.playersNames,
     playersStats: state.playersStats,
+    playersFeedStats: state.playersFeedStats,
     starterPlayers: state.starterPlayers,
     benchPlayers: state.benchPlayers,
     payloadContainer: state.payloadContainer
