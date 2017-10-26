@@ -6,33 +6,61 @@ class TwitterFeedComponent extends React.Component {
   constructor() {
     super();
     this.state = {
-      tweets: []
-    }
+      tweets: [],
+      analyst: ''
+    };
+    this.handleClick = this.handleClick.bind(this);
   }
 
-componentDidMount() {
-    axios.get('/twitterScrape')
-      .then(res => {
-        this.setState({
-          tweets: res.data
-        });
+handleClick = e => {
+  e.preventDefault();
+  this.setState({
+    analyst: e.target.value
+  });
+  console.log(e.target.value);
+  console.log(this.state);
+  const analyst = e.target.value;
+  axios.post('/twitterScrape', {
+  analyst})
+    .then(res => {
+      this.setState({
+        tweets: res.data
       });
+    });
+
 }
 
 render () {
     return (
       <div className='TwitterFeed'>
-        <h1>Matthew Berry Twitter Feed</h1>
+        <h1>Your Favorite Fantasy Feeds</h1>
+        <h6>Field Yates</h6>
+        <button
+          name='yatesButton'
+          value='FieldYates'
+          onClick={(e) => this.handleClick(e)}
+          >Get Tweets</button>
+          <h6>Stephania Bell</h6>
+          <button
+            name='bellButton'
+            value='Stephania_ESPN'
+            onClick={(e) => this.handleClick(e)}
+            >Get Tweets</button>
+            <h6>Adam Schefter</h6>
+            <button
+              name='schefterButton'
+              value='AdamSchefter'
+              onClick={(e) => this.handleClick(e)}
+              >Get Tweets</button>
         <ol>
             {
-                this.state.tweets.map(tweet => {
-                  return <li>{ tweet.text }</li>;
+                this.state.tweets.map((tweet, index) => {
+                  return <li key={index}>{ tweet.text }</li>;
                 })
             }
         </ol>
       </div>
     )
-
   }
 }
 

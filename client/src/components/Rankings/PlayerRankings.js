@@ -15,7 +15,7 @@ class PlayerRankings extends React.Component {
             <RankingList
               teamPlayers={this.props.starterPlayers}
             />
-          </div> 
+          </div>
 
           <div>
             <h3>BENCH PLAYERS</h3>

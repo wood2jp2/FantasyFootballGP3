@@ -56,11 +56,11 @@ require('./app/config/passport/passport.js')(passport, models.user);
 
 let client = new Twitter(twitterKeys);
 
-app.get('/twitterScrape', (req, res) => {
+app.post('/twitterScrape', (req, res) => {
   let params= {
-    screen_name: 'matthewberrytmr',
     count: 20
   };
+  params.screen_name = req.body.analyst;
   client.get('statuses/user_timeline', params, function(err, tweets, resp) {
     res.send(tweets);
   });
