@@ -59,6 +59,7 @@ class PlayersSearch extends Component {
 
         for (const i of QBacks) {
           let fullName = i.player.FirstName + " " + i.player.LastName;
+          let position = i.player.Position;
           let team = i.team.Abbreviation;
           let compAtt = i.stats.PassCompletions["#text"] + "/" + i.stats.PassAttempts["#text"];
           let passTD = i.stats.PassTD["#text"];
@@ -72,6 +73,7 @@ class PlayersSearch extends Component {
           let recYD = i.stats.RecYards["#text"];
           QBconsolidatedStats.push({
             name: fullName,
+            position: position,
             team: team,
             compAtt: compAtt,
             passTD: passTD,
@@ -91,6 +93,7 @@ class PlayersSearch extends Component {
 
         for (const i of RBacks) {
           let fullName = i.player.FirstName + " " + i.player.LastName;
+          let position = i.player.Position;
           let team = i.team.Abbreviation;
           let compAtt = i.stats.PassCompletions["#text"] + "/" + i.stats.PassAttempts["#text"];
           let passTD = i.stats.PassTD["#text"];
@@ -104,6 +107,7 @@ class PlayersSearch extends Component {
           let recYD = i.stats.RecYards["#text"];
           RBconsolidatedStats.push({
             name: fullName,
+            position: position,
             team: team,
             compAtt: compAtt,
             passTD: passTD,
@@ -123,6 +127,7 @@ class PlayersSearch extends Component {
 
         for (const i of WReceivers) {
           let fullName = i.player.FirstName + " " + i.player.LastName;
+          let position = i.player.Position;
           let team = i.team.Abbreviation;
           let compAtt = i.stats.PassCompletions["#text"] + "/" + i.stats.PassAttempts["#text"];
           let passTD = i.stats.PassTD["#text"];
@@ -136,6 +141,7 @@ class PlayersSearch extends Component {
           let recYD = i.stats.RecYards["#text"];
           WRconsolidatedStats.push({
             name: fullName,
+            position: position,
             team: team,
             compAtt: compAtt,
             passTD: passTD,
@@ -155,6 +161,7 @@ class PlayersSearch extends Component {
 
         for (const i of TEnds) {
           let fullName = i.player.FirstName + " " + i.player.LastName;
+          let position = i.player.Position;
           let team = i.team.Abbreviation;
           let compAtt = i.stats.PassCompletions["#text"] + "/" + i.stats.PassAttempts["#text"];
           let passTD = i.stats.PassTD["#text"];
@@ -168,6 +175,7 @@ class PlayersSearch extends Component {
           let recYD = i.stats.RecYards["#text"];
           TEconsolidatedStats.push({
             name: fullName,
+            position: position,
             team: team,
             compAtt: compAtt,
             passTD: passTD,
@@ -187,6 +195,7 @@ class PlayersSearch extends Component {
 /*
         for (const i of Kickers) {
           let fullName = i.player.FirstName + " " + i.player.LastName;
+          let position = i.player.Position;
           let team = i.team.Abbreviation;
           let compAtt = i.stats.PassCompletions["#text"] + "/" + i.stats.PassAttempts["#text"];
           let passTD = i.stats.PassTD["#text"];
@@ -200,6 +209,7 @@ class PlayersSearch extends Component {
           let recYD = i.stats.RecYards["#text"];
           KconsolidatedStats.push({
             name: fullName,
+            position: position,
             team: team,
             compAtt: compAtt,
             passTD: passTD,
@@ -241,13 +251,13 @@ class PlayersSearch extends Component {
       return i.name === bnplayer;
     });
 
-    if (this.props.benchPlayers.length < 6) {
+    if (this.props.benchPlayers.length < 7) {
       this.props.benchPlayers.push({
         ...allplayerStats
       });
       this.loadAddPlayer({payloadContainer: {benchPlayers: this.props.benchPlayers }});
     } else {
-        alert("You can only have 6 Bench Players");
+        alert("You can only have 7 Bench Players");
     }
   };
 

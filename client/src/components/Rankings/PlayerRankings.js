@@ -11,91 +11,41 @@ class PlayerRankings extends React.Component {
       <Container>
         <div className="rankings-table" >
           <div>
-            <h3>STARTER PLAYERS</h3>
+            <h3>QUATERBACK</h3>
             <RankingList
-              teamPlayers={this.props.starterPlayers}
-            />
-          </div>
-
-          <div>
-            <h3>BENCH PLAYERS</h3>
-            <RankingList
-              teamPlayers={this.props.benchPlayers}
+              teamPlayers={this.props.QBFeedStats}
+              allPlayersnfl={this.props.playersStats}
+              markedPosition={this.props.QBFeedStats[0].position}
             />
           </div>
         </div>
         <div className="rankings-table" >
           <div>
-            <h3>STARTER PLAYERS</h3>
+            <h3>RUNNING BACK</h3>
             <RankingList
-              teamPlayers={this.props.starterPlayers}
-            />
-          </div>
-
-          <div>
-            <h3>BENCH PLAYERS</h3>
-            <RankingList
-              teamPlayers={this.props.benchPlayers}
+              teamPlayers={this.props.RBFeedStats}
+              allPlayersnfl={this.props.playersStats}
+              markedPosition={this.props.RBFeedStats[0].position}
             />
           </div>
         </div>
         <div className="rankings-table" >
           <div>
-            <h3>STARTER PLAYERS</h3>
+            <h3>WIDE RECEIVER</h3>
             <RankingList
-              teamPlayers={this.props.starterPlayers}
-            />
-          </div>
-
-          <div>
-            <h3>BENCH PLAYERS</h3>
-            <RankingList
-              teamPlayers={this.props.benchPlayers}
+              teamPlayers={this.props.WRFeedStats}
+              allPlayersnfl={this.props.playersStats}
+              markedPosition={this.props.WRFeedStats[0].position}
             />
           </div>
         </div>
         <div className="rankings-table" >
           <div>
-            <h3>STARTER PLAYERS</h3>
+            <h3>TIGHT END</h3>
             <RankingList
-              teamPlayers={this.props.starterPlayers}
-            />
-          </div>
-
-          <div>
-            <h3>BENCH PLAYERS</h3>
-            <RankingList
-              teamPlayers={this.props.benchPlayers}
-            />
-          </div>
-        </div>
-        <div className="rankings-table" >
-          <div>
-            <h3>STARTER PLAYERS</h3>
-            <RankingList
-              teamPlayers={this.props.starterPlayers}
-            />
-          </div>
-
-          <div>
-            <h3>BENCH PLAYERS</h3>
-            <RankingList
-              teamPlayers={this.props.benchPlayers}
-            />
-          </div>
-        </div>
-        <div className="rankings-table" >
-          <div>
-            <h3>STARTER PLAYERS</h3>
-            <RankingList
-              teamPlayers={this.props.starterPlayers}
-            />
-          </div>
-
-          <div>
-            <h3>BENCH PLAYERS</h3>
-            <RankingList
-              teamPlayers={this.props.benchPlayers}
+              teamPlayers={this.props.TEFeedStats}
+              allPlayersnfl={this.props.playersStats}
+              markedPosition={this.props.TEFeedStats[0].position}
             />
           </div>
         </div>
@@ -109,7 +59,11 @@ function mapStateToProps(state) {
     playerSearch: state.playerSearch,
     playersNames: state.playersNames,
     playersStats: state.playersStats,
-    playersFeedStats: state.playersFeedStats,
+    QBFeedStats: state.QBFeedStats,
+    RBFeedStats: state.RBFeedStats,
+    WRFeedStats: state.WRFeedStats,
+    TEFeedStats: state.TEFeedStats,
+    KFeedStats: state.KFeedStats,
     starterPlayers: state.starterPlayers,
     benchPlayers: state.benchPlayers,
     payloadContainer: state.payloadContainer

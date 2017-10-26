@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, {Component} from 'react';
+import "./TwitterFeed.css";
 
 class TwitterFeedComponent extends React.Component {
 
@@ -33,7 +34,7 @@ handleClick = e => {
 render () {
     return (
       <div className='TwitterFeed'>
-        <h1>Your Favorite Fantasy Feeds</h1>
+        <h2>Your Favorite Fantasy Feeds</h2>
         <h6>Field Yates</h6>
         <button
           name='yatesButton'
