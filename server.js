@@ -7,7 +7,6 @@ const
   env = require('dotenv').load(),
   exphbs = require('express-handlebars'),
   nodemailer = require('nodemailer'),
-  mongoose = require('mongoose'),
   request = require('request'),
   cheerio = require('cheerio'),
   sequelize = require('sequelize'),
