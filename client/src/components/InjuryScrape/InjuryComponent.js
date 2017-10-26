@@ -13,7 +13,6 @@ class InjuryComponent extends React.Component {
  componentDidMount()  {
     axios.get('/scrape')
       .then(res => {
-        console.log('yo yo yo ');
         this.setState({
           injuries: res.data
         });
@@ -27,6 +26,7 @@ class InjuryComponent extends React.Component {
       <div className='InjuryFeed'>
         <h1>Current Injuries for Week 9</h1>
         <table>
+          <thead>
           <tr>
             <th>Name</th>
             <th>Position</th>
@@ -34,11 +34,13 @@ class InjuryComponent extends React.Component {
             <th>News</th>
             <th>Injury</th>
           </tr>
+          </thead>
+          <tbody>
             { this.state.injuries &&
-              this.state.injuries.map(injury => {
+              this.state.injuries.map((injury, index) => {
 
                 return (
-                  <tr>
+                  <tr key={index}>
                     <td>{ injury.name }</td>
                     <td>{ injury.position }</td>
                     <td>{ injury.status }</td>
@@ -48,7 +50,7 @@ class InjuryComponent extends React.Component {
               )
               })
             }
-
+</tbody>
         </table>
 
 

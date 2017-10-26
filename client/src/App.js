@@ -75,7 +75,11 @@ class App extends React.Component {
           }} />
 
           {this.state.authenticated &&
+            <div>
             <Route exact path='/playerRankings' component={PlayerRankings} />
+            <Route exact path='/twitter' component={TwitterFeedComponent} />
+            <Route exact path='/injuries' component={InjuryComponent} />
+            </div>
           }
 
             {this.state.authenticated &&
@@ -86,8 +90,7 @@ class App extends React.Component {
               <Route exact path='/welcome' component={WelcomeHomepage} />
             }
 
-               <Route exact path='/twitter' component={TwitterFeedComponent} />
-               <Route exact path='/injuries' component={InjuryComponent} />
+
 
             <Route exact path='/FailedLog' component={FailedLog} />
 

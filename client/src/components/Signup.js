@@ -31,7 +31,7 @@ class SignupComponent extends React.Component {
           signupFail: false
         });
         this.props.onSuccess(response.email);
-        this.props.history.push('/welcome');
+        this.props.history.push('/teammanager');
     }).catch(response => {
       this.setState({
         signupFail: true
