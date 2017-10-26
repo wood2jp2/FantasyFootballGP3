@@ -26,7 +26,7 @@ class InjuryComponent extends React.Component {
 
     console.log(this.state.injuries)
     return (
-      <Container className="players-table" >
+      <Container className="injuries-table" >
         <div className='InjuryFeed'>
           <h3>CURRENT INJURIES FOR WEEK 9</h3>
           <InjuriesList
