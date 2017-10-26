@@ -54,18 +54,13 @@ const models = require("./app/models");
 //load passport strategies
 require('./app/config/passport/passport.js')(passport, models.user);
 
-app.get('/fml', (req, res) => {
-  console.log(req.isAuthenticated());
-  res.send({'lmao': 'fml'});
-});
-
 let client = new Twitter(twitterKeys);
 
-app.get('/twitterScrape', (req, res) => {
+app.post('/twitterScrape', (req, res) => {
   let params= {
-    screen_name: 'matthewberrytmr',
     count: 20
   };
+  params.screen_name = req.body.analyst;
   client.get('statuses/user_timeline', params, function(err, tweets, resp) {
     res.send(tweets);
   });
@@ -143,7 +138,7 @@ app.get('/scrape', (req, res) => {
       result.injury=$(this).find('td:nth-child(4)').text();
       allResults.push(result);
       });
-    res.json(allResults)
+    res.send(allResults)
   });
 });
 

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const weekx = 4;
+const weekx = 7;
 const seasonx = 2017;
 const urlx = "season=" + seasonx + "&week=" + weekx + "&format=json";
 
