@@ -8,12 +8,8 @@ import WelcomeHomepage from './Welcome'
 import Navbar from "./components/Navbar/Navbar";
 import SignupComponent from './components/Signup';
 import SignoutComponent from './components/Signout';
-<<<<<<< HEAD
-import TwitterComponent from './components/TwitterScrape/TwitterFeed';
-=======
 import TwitterFeedComponent from './components/TwitterScrape/TwitterFeed';
 import InjuryComponent from './components/InjuryScrape/InjuryComponent';
->>>>>>> c69ec80f2c09e93162b5c9014d2a44d956c6afd6
 import FailedLog from './components/Fail';
 import axios from 'axios';
 
@@ -79,7 +75,11 @@ class App extends React.Component {
           }} />
 
           {this.state.authenticated &&
-            <Route exact path='/playerRankings' component={PlayerRankings} />
+            <div>
+              <Route exact path='/playerRankings' component={PlayerRankings} />
+              <Route exact path='/twitter' component={TwitterFeedComponent} />
+              <Route exact path='/injuries' component={InjuryComponent} />
+            </div>
           }
 
             {this.state.authenticated &&
@@ -90,12 +90,7 @@ class App extends React.Component {
               <Route exact path='/welcome' component={WelcomeHomepage} />
             }
 
-<<<<<<< HEAD
-            <Route exact path='/twitter' component={TwitterComponent} />
-=======
-               <Route exact path='/twitter' component={TwitterFeedComponent} />
-               <Route exact path='/injuries' component={InjuryComponent} />
->>>>>>> c69ec80f2c09e93162b5c9014d2a44d956c6afd6
+
 
             <Route exact path='/FailedLog' component={FailedLog} />
 

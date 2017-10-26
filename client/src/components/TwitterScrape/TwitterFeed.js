@@ -6,19 +6,6 @@ class TwitterFeedComponent extends React.Component {
   constructor() {
     super();
     this.state = {
-<<<<<<< HEAD
-      tweets: []
-    }
-  }
-
-componentDidMount() {
-    axios.get('/twitterScrape')
-      .then(res => {
-        this.setState({
-          tweets: res.data
-        });
-      });
-=======
       tweets: [],
       analyst: ''
     };
@@ -41,19 +28,11 @@ handleClick = e => {
       });
     });
 
->>>>>>> c69ec80f2c09e93162b5c9014d2a44d956c6afd6
 }
 
 render () {
     return (
       <div className='TwitterFeed'>
-<<<<<<< HEAD
-        <h1>Matthew Berry Twitter Feed</h1>
-        <ol>
-            {
-                this.state.tweets.map(tweet => {
-                  return <li>{ tweet.text }</li>;
-=======
         <h1>Your Favorite Fantasy Feeds</h1>
         <h6>Field Yates</h6>
         <button
@@ -77,16 +56,11 @@ render () {
             {
                 this.state.tweets.map((tweet, index) => {
                   return <li key={index}>{ tweet.text }</li>;
->>>>>>> c69ec80f2c09e93162b5c9014d2a44d956c6afd6
                 })
             }
         </ol>
       </div>
     )
-<<<<<<< HEAD
-
-=======
->>>>>>> c69ec80f2c09e93162b5c9014d2a44d956c6afd6
   }
 }
 
