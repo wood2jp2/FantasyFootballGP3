@@ -2,6 +2,7 @@ import React from "react";
 import Container from "../Container/Container";
 import RankingList from "../TeamList/RankingList";
 import RankingKList from "../TeamList/RankingKList";
+import RankingSBList from "../TeamList/RankingSBList";
 import { connect } from "react-redux";
 import "./PlayerRankings.css";
 
@@ -55,6 +56,20 @@ class PlayerRankings extends React.Component {
             <h3>KICKERS</h3>
             <RankingKList
               teamPlayers={this.props.KFeedStats}
+            />
+          </div>
+        </div>
+        <div className="rankings-table" >
+          <div>
+          <h3>STARTER PLAYERS</h3>
+            <RankingSBList
+              teamPlayers={this.props.starterPlayers}
+            />
+          </div>
+          <div>
+            <h3>BENCH PLAYERS</h3>
+            <RankingSBList
+              teamPlayers={this.props.benchPlayers}
             />
           </div>
         </div>
