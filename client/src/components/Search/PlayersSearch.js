@@ -18,7 +18,6 @@ class PlayersSearch extends Component {
   };
 
   componentDidMount() {
-    alert("Please wait until all APIs are loaded...");
     this.loadNFLFeeds();
     this.loadSportFeeds();
   }
