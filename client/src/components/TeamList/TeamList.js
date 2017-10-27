@@ -1,6 +1,8 @@
 import React from "react";
-import TeamListHeader from "./TeamList-Header"
-import TeamListPlayers from "./TeamList-Players"
+import "materialize-css";
+import {Button, Icon} from "react-materialize";
+import TeamListHeader from "./TeamList-Header";
+import TeamListPlayers from "./TeamList-Players";
 
 class TeamList extends React.Component {
 

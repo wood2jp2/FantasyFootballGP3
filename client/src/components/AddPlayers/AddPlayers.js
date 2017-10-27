@@ -1,5 +1,7 @@
 import React from "react";
 import store from "../../Store";
+import "materialize-css";
+import "react-materialize";
 
 class AddPlayers extends React.Component {
 
@@ -32,7 +34,7 @@ class AddPlayers extends React.Component {
         <datalist id="playersNames">
             {this.props.playersNames.map((player, index) => <option value={player} key={index} />)}
         </datalist>
-        <button type="submit">Add</button>
+        <button className="btn waves-effect waves-dark" type="submit">Add</button>
       </form>
     );
   }

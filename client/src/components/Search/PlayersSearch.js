@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import "materialize-css";
+import "react-materialize";
 import AddPlayers from "../AddPlayers/AddPlayers";
 import Container from "../Container/Container";
 import TeamList from "../TeamList/TeamList";
@@ -239,7 +241,7 @@ class PlayersSearch extends Component {
     if (this.props.starterPlayers.length < 9) {
       this.props.starterPlayers.push({
         ...allplayerStats
-      });
+    });
       this.loadAddPlayer({payloadContainer: {starterPlayers: this.props.starterPlayers }});
     } else {
       alert("You can only have 9 Starter Players");
@@ -285,9 +287,9 @@ class PlayersSearch extends Component {
 
   render() {
     return(
-      <Container className="players-table" >
-        <div>
-          <h3>STARTER PLAYERS</h3>
+      <container className="players-table" style={{ minHeight: "100%" }}>
+        <div className= "players-table brown lighten-5">
+          <h3>STARTERS</h3>
           <AddPlayers
             createTeam={this.createStarterTeam.bind(this)}
             playersNames={this.props.playersNames}
@@ -300,9 +302,11 @@ class PlayersSearch extends Component {
           />
           {this.renderSubmitToDatabase()}
         </div>
-
-        <div>
-          <h3>BENCH PLAYERS</h3>
+        <br></br>
+        <br></br>
+        <br></br>
+        <div className= "players-table brown lighten-5">
+          <h3>BENCH</h3>
           <AddPlayers
             createTeam={this.createBenchTeam.bind(this)}
             playersNames={this.props.playersNames}
@@ -315,10 +319,10 @@ class PlayersSearch extends Component {
           />
           {this.renderSubmitToDatabase()}
         </div>
-      </Container>
+      </container>
     );
-  }
 }
+  }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({loadAddPlayer}, dispatch);
@@ -337,7 +341,7 @@ function mapStateToProps(state) {
     starterPlayers: state.starterPlayers,
     benchPlayers: state.benchPlayers,
     payloadContainer: state.payloadContainer
-  }
+}
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlayersSearch);

@@ -1,4 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
+import "materialize-css";
+import "react-materialize";
+import "./App.css";
 import SigninComponent from './components/Signin';
 import PlayersSearch from "./components/Search/PlayersSearch";
 import PlayerRankings from "./components/Rankings/PlayerRankings";
@@ -8,6 +11,7 @@ import WelcomeHomepage from './Welcome'
 import Navbar from "./components/Navbar/Navbar";
 import SignupComponent from './components/Signup';
 import SignoutComponent from './components/Signout';
+import { Parallax, Background } from 'react-parallax';
 import TwitterFeedComponent from './components/TwitterScrape/TwitterFeed';
 import InjuryComponent from './components/InjuryScrape/InjuryComponent';
 import FailedLog from './components/Fail';
@@ -20,10 +24,13 @@ class App extends React.Component {
   }
 
   render() {
-    return(
-      <Router>
-        <div>
-          <Navbar authenticated={this.state.authenticated} />
+  return(
+
+
+    <Router>
+      <div>
+        <Navbar authenticated={this.state.authenticated} />
+
           <Wrapper>
 
             <Route exact path="/" render={(props) => {
@@ -75,15 +82,17 @@ class App extends React.Component {
           }} />
 
           {this.state.authenticated &&
+
             <div>
               <Route exact path='/playerRankings' component={PlayerRankings} />
               <Route exact path='/twitter' component={TwitterFeedComponent} />
               <Route exact path='/injuries' component={InjuryComponent} />
             </div>
+
           }
 
             {this.state.authenticated &&
-              <Route exact path="/teammanager" component={PlayersSearch} />
+          <Route exact path="/teammanager" component={PlayersSearch} />
             }
 
             {this.state.authenticated &&
@@ -98,6 +107,7 @@ class App extends React.Component {
         </div>
       </Router>
     );
+
   }
 }
 

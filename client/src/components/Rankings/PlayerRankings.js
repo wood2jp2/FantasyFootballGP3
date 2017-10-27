@@ -8,10 +8,11 @@ class PlayerRankings extends React.Component {
 
   render(){
     return(
+
       <Container>
         <div className="rankings-table" >
           <div>
-            <h3>QUATERBACK</h3>
+            <h3>QUARTERBACK</h3>
             <RankingList
               teamPlayers={this.props.QBFeedStats}
               allPlayersnfl={this.props.playersStats}

@@ -1,10 +1,10 @@
 .players-table {
-  width: 660px;
-  font-family: Courier New, monospace;
-  font-size: 10px;
-  color: #FFFFFF;
-  margin: 20px 20px;
-  background-color: #43464B;
+  width: 1000px;
+  font-family: Roboto;
+  font-size: 12px;
+  color:steelblue;
+  margin: 20px;
+
   padding: 0 10px 10px 10px;
 }
 
@@ -15,12 +15,13 @@
 }
 
 .rankings-table {
-  width: 620px;
-  font-family: Courier New, monospace;
-  font-size: 10px;
-  color: #FFFFFF;
-  margin: 10px;
-  background-color: #43464B;
+
+  width: 1000px;
+  font-family: Roboto;
+  font-size: 18px;
+  color: lightslategrey;
+  margin: 20px;
+  background-color: antiquewhite;
   padding: 0 10px 10px 10px;
   float: left;
 }
@@ -33,11 +34,16 @@
   margin: 20px 20px;
   background-color: #43464B;
   padding: 0 10px 10px 10px;
+  vertical-align: middle;
+  align-content: center;
 }
 
 table {
   width: 100%;
   margin-bottom: 0 !important;
+  font-size: 18px;
+  color:cadetblue;
+
 }
 
 th {
@@ -47,22 +53,25 @@ th {
 td {
   text-align: center;
   vertical-align: middle !important;
+  color: steelblue;
 }
 
 tr {
-  height: 30px;
+  height: 20px;
 }
 
 h3 {
-  padding-top: 10px;
+  padding-top: 15px;
+  font-family: sans-serif;
+  font-weight: bolder;
   margin: auto 0;
-  color: #FFFFFF;
+  color: steelblue;
 }
 
 input {
-  color: black;
+  color: dodgerblue;
 }
 
 button {
-  color: black;
+  color:#365125;
 }

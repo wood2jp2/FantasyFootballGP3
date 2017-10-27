@@ -1,30 +1,33 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import "./Navbar.css";
+import "materialize-css";
+import "react-materialize";
 
 const Navbar = props =>
-  <nav className="navbar navbar-default">
+  <nav className="nav-wrapper blue darken-4">
     <div className="container-fluid">
       <div className="navbar-header">
-        <Link className="navbar-brand" to="/">Fantasy Football GM</Link>
-      </div>
 
-        {!props.authenticated ? (
+        <Link className="brand-logo" to="/">Fantasy Football GM</Link>
+        </div>
+
+          <ul className="right nav navbar-nav">
+            {
+          !props.authenticated ? (
 
           <div>
-            <ul className="nav navbar-nav">
-              <li className={
-                window.location.pathname === "/" ||
-                window.location.pathname === "/signin"
-                  ? "active"
-                  : ""}
-                ><Link to="/signin">Sign in</Link>
-              </li>
-              <li
-                className={window.location.pathname === "/signup" ? "active" : ""}
-                ><Link to="/signup">Sign up</Link>
-              </li>
-            </ul>
+            <li className={
+              window.location.pathname === "/" ||
+              window.location.pathname === "/signin"
+                ? "active"
+                : ""}
+              ><Link to="/signin">Sign In</Link>
+            </li>
+            <li className={window.location.pathname === "/signup" ? "active" : ""}
+              ><Link to="/signup">Sign Up</Link>
+            </li>
+
           </div>
 
         ) : (
@@ -56,6 +59,8 @@ const Navbar = props =>
 
           )
         }
+          </ul>
+
     </div>
   </nav>;
 
