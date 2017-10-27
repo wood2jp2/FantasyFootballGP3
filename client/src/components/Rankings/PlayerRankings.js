@@ -1,6 +1,7 @@
 import React from "react";
 import Container from "../Container/Container";
 import RankingList from "../TeamList/RankingList";
+import RankingKList from "../TeamList/RankingKList";
 import { connect } from "react-redux";
 import "./PlayerRankings.css";
 
@@ -46,6 +47,14 @@ class PlayerRankings extends React.Component {
               teamPlayers={this.props.TEFeedStats}
               allPlayersnfl={this.props.playersStats}
               markedPosition={this.props.TEFeedStats[0].position}
+            />
+          </div>
+        </div>
+        <div className="rankings-table" >
+          <div>
+            <h3>KICKERS</h3>
+            <RankingKList
+              teamPlayers={this.props.KFeedStats}
             />
           </div>
         </div>
