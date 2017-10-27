@@ -8,13 +8,31 @@
   padding: 0 10px 10px 10px;
 }
 
+.container {
+ margin: 10px 0 0 10px;
+ width: 1320px;
+ padding: 0;
+}
+
 .rankings-table {
+
   width: 1000px;
   font-family: Roboto;
   font-size: 18px;
   color: lightslategrey;
   margin: 20px;
   background-color: antiquewhite;
+  padding: 0 10px 10px 10px;
+  float: left;
+}
+
+.injuries-table {
+  width: 800px;
+  font-family: Courier New, monospace;
+  font-size: 10px;
+  color: #FFFFFF;
+  margin: 20px 20px;
+  background-color: #43464B;
   padding: 0 10px 10px 10px;
   vertical-align: middle;
   align-content: center;

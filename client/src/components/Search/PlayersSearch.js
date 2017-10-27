@@ -18,14 +18,218 @@ class PlayersSearch extends Component {
   };
 
   componentDidMount() {
+    this.loadNFLFeeds();
+    this.loadSportFeeds();
+  }
+
+  loadNFLFeeds = () => {
     API.getPlayersList()
       .then(res => {
         const onlyNames = res.data.players.reduce((item, i) =>
         {return [...item, i.name]}, ["Players"]);
-        this.loadAddPlayer({
+        store.dispatch(loadAddPlayer({
           playersNames: onlyNames,
           playersStats: res.data.players
-        })})
+        }))})
+      .catch(err => console.log(err));
+  }
+
+  loadSportFeeds = () => {
+    API.getSportsFeeds()
+      .then(function (res) {
+        const QBconsolidatedStats = [];
+        const RBconsolidatedStats = [];
+        const WRconsolidatedStats = [];
+        const TEconsolidatedStats = [];
+        const KconsolidatedStats = [];
+        const apishortcut = res.data.cumulativeplayerstats.playerstatsentry;
+        const QBacks = apishortcut.filter( i => {
+          return i.player.Position === "QB"
+        });
+        const RBacks = apishortcut.filter( i => {
+          return i.player.Position === "RB"
+        });
+        const WReceivers = apishortcut.filter( i => {
+          return i.player.Position === "WR"
+        });
+        const TEnds = apishortcut.filter( i => {
+          return i.player.Position === "TE"
+        });
+        const Kickers = apishortcut.filter( i => {
+          return i.player.Position === "K"
+        });
+
+        for (const i of QBacks) {
+          let fullName = i.player.FirstName + " " + i.player.LastName;
+          let position = i.player.Position;
+          let team = i.team.Abbreviation;
+          let compAtt = i.stats.PassCompletions["#text"] + "/" + i.stats.PassAttempts["#text"];
+          let passTD = i.stats.PassTD["#text"];
+          let passYD = i.stats.PassYards["#text"];
+          let passInt = i.stats.PassInt["#text"];
+          let rushAtt = i.stats.RushAttempts["#text"];
+          let rushTD = i.stats.RushTD["#text"];
+          let rushYD = i.stats.RushYards["#text"];
+          let receptions = i.stats.Receptions["#text"];
+          let recTD = i.stats.RecTD["#text"];
+          let recYD = i.stats.RecYards["#text"];
+          QBconsolidatedStats.push({
+            name: fullName,
+            position: position,
+            team: team,
+            compAtt: compAtt,
+            passTD: passTD,
+            passYD: passYD,
+            passInt: passInt,
+            rushAtt: rushAtt,
+            rushTD: rushTD,
+            rushYD: rushYD,
+            receptions: receptions,
+            recTD: recTD,
+            recYD: recYD
+          });
+        };
+        store.dispatch(loadAddPlayer({
+          QBFeedStats: QBconsolidatedStats })
+        );
+
+        for (const i of RBacks) {
+          let fullName = i.player.FirstName + " " + i.player.LastName;
+          let position = i.player.Position;
+          let team = i.team.Abbreviation;
+          let compAtt = i.stats.PassCompletions["#text"] + "/" + i.stats.PassAttempts["#text"];
+          let passTD = i.stats.PassTD["#text"];
+          let passYD = i.stats.PassYards["#text"];
+          let passInt = i.stats.PassInt["#text"];
+          let rushAtt = i.stats.RushAttempts["#text"];
+          let rushTD = i.stats.RushTD["#text"];
+          let rushYD = i.stats.RushYards["#text"];
+          let receptions = i.stats.Receptions["#text"];
+          let recTD = i.stats.RecTD["#text"];
+          let recYD = i.stats.RecYards["#text"];
+          RBconsolidatedStats.push({
+            name: fullName,
+            position: position,
+            team: team,
+            compAtt: compAtt,
+            passTD: passTD,
+            passYD: passYD,
+            passInt: passInt,
+            rushAtt: rushAtt,
+            rushTD: rushTD,
+            rushYD: rushYD,
+            receptions: receptions,
+            recTD: recTD,
+            recYD: recYD
+          });
+        };
+        store.dispatch(loadAddPlayer({
+          RBFeedStats: RBconsolidatedStats })
+        );
+
+        for (const i of WReceivers) {
+          let fullName = i.player.FirstName + " " + i.player.LastName;
+          let position = i.player.Position;
+          let team = i.team.Abbreviation;
+          let compAtt = i.stats.PassCompletions["#text"] + "/" + i.stats.PassAttempts["#text"];
+          let passTD = i.stats.PassTD["#text"];
+          let passYD = i.stats.PassYards["#text"];
+          let passInt = i.stats.PassInt["#text"];
+          let rushAtt = i.stats.RushAttempts["#text"];
+          let rushTD = i.stats.RushTD["#text"];
+          let rushYD = i.stats.RushYards["#text"];
+          let receptions = i.stats.Receptions["#text"];
+          let recTD = i.stats.RecTD["#text"];
+          let recYD = i.stats.RecYards["#text"];
+          WRconsolidatedStats.push({
+            name: fullName,
+            position: position,
+            team: team,
+            compAtt: compAtt,
+            passTD: passTD,
+            passYD: passYD,
+            passInt: passInt,
+            rushAtt: rushAtt,
+            rushTD: rushTD,
+            rushYD: rushYD,
+            receptions: receptions,
+            recTD: recTD,
+            recYD: recYD
+          });
+        };
+        store.dispatch(loadAddPlayer({
+          WRFeedStats: WRconsolidatedStats })
+        );
+
+        for (const i of TEnds) {
+          let fullName = i.player.FirstName + " " + i.player.LastName;
+          let position = i.player.Position;
+          let team = i.team.Abbreviation;
+          let compAtt = i.stats.PassCompletions["#text"] + "/" + i.stats.PassAttempts["#text"];
+          let passTD = i.stats.PassTD["#text"];
+          let passYD = i.stats.PassYards["#text"];
+          let passInt = i.stats.PassInt["#text"];
+          let rushAtt = i.stats.RushAttempts["#text"];
+          let rushTD = i.stats.RushTD["#text"];
+          let rushYD = i.stats.RushYards["#text"];
+          let receptions = i.stats.Receptions["#text"];
+          let recTD = i.stats.RecTD["#text"];
+          let recYD = i.stats.RecYards["#text"];
+          TEconsolidatedStats.push({
+            name: fullName,
+            position: position,
+            team: team,
+            compAtt: compAtt,
+            passTD: passTD,
+            passYD: passYD,
+            passInt: passInt,
+            rushAtt: rushAtt,
+            rushTD: rushTD,
+            rushYD: rushYD,
+            receptions: receptions,
+            recTD: recTD,
+            recYD: recYD
+          });
+        };
+        store.dispatch(loadAddPlayer({
+          TEFeedStats: TEconsolidatedStats })
+        );
+/*
+        for (const i of Kickers) {
+          let fullName = i.player.FirstName + " " + i.player.LastName;
+          let position = i.player.Position;
+          let team = i.team.Abbreviation;
+          let compAtt = i.stats.PassCompletions["#text"] + "/" + i.stats.PassAttempts["#text"];
+          let passTD = i.stats.PassTD["#text"];
+          let passYD = i.stats.PassYards["#text"];
+          let passInt = i.stats.PassInt["#text"];
+          let rushAtt = i.stats.RushAttempts["#text"];
+          let rushTD = i.stats.RushTD["#text"];
+          let rushYD = i.stats.RushYards["#text"];
+          let receptions = i.stats.Receptions["#text"];
+          let recTD = i.stats.RecTD["#text"];
+          let recYD = i.stats.RecYards["#text"];
+          KconsolidatedStats.push({
+            name: fullName,
+            position: position,
+            team: team,
+            compAtt: compAtt,
+            passTD: passTD,
+            passYD: passYD,
+            passInt: passInt,
+            rushAtt: rushAtt,
+            rushTD: rushTD,
+            rushYD: rushYD,
+            receptions: receptions,
+            recTD: recTD,
+            recYD: recYD
+          });
+        };
+        store.dispatch(loadAddPlayer({
+          KFeedStats: KconsolidatedStats })
+        );
+*/
+        })
       .catch(err => console.log(err));
   }
 
@@ -49,13 +253,13 @@ class PlayersSearch extends Component {
       return i.name === bnplayer;
     });
 
-    if (this.props.benchPlayers.length < 6) {
+    if (this.props.benchPlayers.length < 7) {
       this.props.benchPlayers.push({
         ...allplayerStats
       });
       this.loadAddPlayer({payloadContainer: {benchPlayers: this.props.benchPlayers }});
     } else {
-        alert("You can only have 6 Bench Players");
+        alert("You can only have 7 Bench Players");
     }
   };
 
@@ -63,15 +267,23 @@ class PlayersSearch extends Component {
     const newList = this.props.starterPlayers.filter( player => {
       return (player.name !== delplayer.name);
     });
-    this.loadAddPlayer({payloadContainer: {starterPlayers: newList }});
+    this.loadAddPlayer({starterPlayers: newList });
   };
 
   deleteBenchPlayer(delplayer) {
     const newList = this.props.benchPlayers.filter( player => {
       return (player.name !== delplayer.name);
     });
-    this.loadAddPlayer({payloadContainer: {benchPlayers: newList }});
+    this.loadAddPlayer({benchPlayers: newList });
   };
+
+  renderSubmitToDatabase() {
+    return(
+      <div>
+        <button onClick={this.submitTeam}>Submit</button>
+      </div>
+    );
+  }
 
   render() {
     return(
@@ -88,6 +300,7 @@ class PlayersSearch extends Component {
             teamPlayers={this.props.starterPlayers}
             deletePlayer={this.deleteStarterPlayer.bind(this)}
           />
+          {this.renderSubmitToDatabase()}
         </div>
         <br></br>
         <br></br>
@@ -104,6 +317,7 @@ class PlayersSearch extends Component {
             teamPlayers={this.props.benchPlayers}
             deletePlayer={this.deleteBenchPlayer.bind(this)}
           />
+          {this.renderSubmitToDatabase()}
         </div>
       </container>
     );
@@ -119,6 +333,11 @@ function mapStateToProps(state) {
     playerSearch: state.playerSearch,
     playersNames: state.playersNames,
     playersStats: state.playersStats,
+    QBFeedStats: state.QBFeedStats,
+    RBFeedStats: state.RBFeedStats,
+    WRFeedStats: state.WRFeedStats,
+    TEFeedStats: state.TEFeedStats,
+    KFeedStats: state.KFeedStats,
     starterPlayers: state.starterPlayers,
     benchPlayers: state.benchPlayers,
     payloadContainer: state.payloadContainer

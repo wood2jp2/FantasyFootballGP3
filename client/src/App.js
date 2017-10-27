@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "materialize-css";
 import "react-materialize";
 import "./App.css";
-// import SignupComponent from './components/Signup';
 import SigninComponent from './components/Signin';
 import PlayersSearch from "./components/Search/PlayersSearch";
 import PlayerRankings from "./components/Rankings/PlayerRankings";
@@ -10,10 +9,11 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Wrapper from "./components/Wrapper/Wrapper";
 import WelcomeHomepage from './Welcome'
 import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
 import SignupComponent from './components/Signup';
 import SignoutComponent from './components/Signout';
 import { Parallax, Background } from 'react-parallax';
+import TwitterFeedComponent from './components/TwitterScrape/TwitterFeed';
+import InjuryComponent from './components/InjuryScrape/InjuryComponent';
 import FailedLog from './components/Fail';
 import axios from 'axios';
 
@@ -82,7 +82,13 @@ class App extends React.Component {
           }} />
 
           {this.state.authenticated &&
-            <Route exact path='/PlayerRankings' component={PlayerRankings} />
+
+            <div>
+              <Route exact path='/playerRankings' component={PlayerRankings} />
+              <Route exact path='/twitter' component={TwitterFeedComponent} />
+              <Route exact path='/injuries' component={InjuryComponent} />
+            </div>
+
           }
 
             {this.state.authenticated &&
@@ -97,11 +103,11 @@ class App extends React.Component {
 
             <Route exact path='/FailedLog' component={FailedLog} />
 
-        </Wrapper>
-        <Footer />
-      </div>
-    </Router>
-  );
+          </Wrapper>
+        </div>
+      </Router>
+    );
+
   }
 }
 

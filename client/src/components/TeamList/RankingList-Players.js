@@ -5,11 +5,18 @@ class RankingListPlayers extends React.Component {
   renderPlayersList() {
     const playersStatsList = [
       this.props.teamData.name,
-      this.props.teamData.position,
-      this.props.teamData.teamAbbr,
-      (this.props.teamData.seasonPts).toFixed(2),
-      (this.props.teamData.seasonProjectedPts).toFixed(2),
-      (this.props.teamData.weekProjectedPts).toFixed(2)];
+      this.props.teamData.compAtt,
+      this.props.teamData.passYD,
+      this.props.teamData.passTD,
+      this.props.teamData.passInt,
+      this.props.teamData.rushAtt,
+      this.props.teamData.rushYD,
+      this.props.teamData.rushTD,
+      this.props.teamData.receptions,
+      this.props.teamData.recYD,
+      this.props.teamData.recTD,
+      this.props.teamData.Pts
+    ];
 
     return(
       playersStatsList.map((player, index) => (

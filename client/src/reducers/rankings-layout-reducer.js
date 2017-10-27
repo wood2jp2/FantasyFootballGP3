@@ -4,6 +4,11 @@ const initialState = {
   playerSearch: "",
   playersNames: [],
   playersStats: [],
+  QBFeedStats: [],
+  RBFeedStats: [],
+  WRFeedStats: [],
+  TEFeedStats: [],
+  KFeedStats: [],
   starterPlayers: [],
   benchPlayers: [],
   payloadContainer: {}

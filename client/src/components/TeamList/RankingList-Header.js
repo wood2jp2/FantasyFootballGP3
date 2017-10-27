@@ -5,12 +5,25 @@ const RankingListHeader = props => {
   return (
     <thead>
       <tr>
-        <th>Player</th>
-        <th>Position</th>
-        <th>Team</th>
-        <th>Season Pts</th>
-        <th>Season Projected Pts</th>
-        <th>Week Projected Pts</th>
+        <th>POSITION</th>
+        <th colSpan={4}>PASSING</th>
+        <th colSpan={3}>RUSHING</th>
+        <th colSpan={3}>RECEIVING</th>
+        <th>TOTAL</th>
+      </tr>
+      <tr>
+        <th>PLAYER</th>
+        <th>C/A</th>
+        <th>YDS</th>
+        <th>TD</th>
+        <th>INT</th>
+        <th>RUSH</th>
+        <th>YDS</th>
+        <th>TD</th>
+        <th>REC</th>
+        <th>YDS</th>
+        <th>TD</th>
+        <th>PTS</th>
       </tr>
     </thead>
   );
