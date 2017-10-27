@@ -18,6 +18,7 @@ class PlayersSearch extends Component {
   };
 
   componentDidMount() {
+    alert("Please wait until all APIs are loaded...");
     this.loadNFLFeeds();
     this.loadSportFeeds();
   }
@@ -37,6 +38,8 @@ class PlayersSearch extends Component {
   loadSportFeeds = () => {
     API.getSportsFeeds()
       .then(function (res) {
+        console.log(res.data);
+        alert("All APIs are loaded!");
         const QBconsolidatedStats = [];
         const RBconsolidatedStats = [];
         const WRconsolidatedStats = [];
@@ -194,41 +197,29 @@ class PlayersSearch extends Component {
         store.dispatch(loadAddPlayer({
           TEFeedStats: TEconsolidatedStats })
         );
-/*
+
         for (const i of Kickers) {
           let fullName = i.player.FirstName + " " + i.player.LastName;
           let position = i.player.Position;
           let team = i.team.Abbreviation;
-          let compAtt = i.stats.PassCompletions["#text"] + "/" + i.stats.PassAttempts["#text"];
-          let passTD = i.stats.PassTD["#text"];
-          let passYD = i.stats.PassYards["#text"];
-          let passInt = i.stats.PassInt["#text"];
-          let rushAtt = i.stats.RushAttempts["#text"];
-          let rushTD = i.stats.RushTD["#text"];
-          let rushYD = i.stats.RushYards["#text"];
-          let receptions = i.stats.Receptions["#text"];
-          let recTD = i.stats.RecTD["#text"];
-          let recYD = i.stats.RecYards["#text"];
+          let f30Pct = i.stats.Fg30_39Pct["#text"];
+          let f40Pct = i.stats.Fg40_49Pct["#text"];
+          let f50Pct = i.stats.Fg50PlusPct["#text"];
+          let fandxPts = i.stats.FgAndXpPts["#text"];
           KconsolidatedStats.push({
             name: fullName,
             position: position,
             team: team,
-            compAtt: compAtt,
-            passTD: passTD,
-            passYD: passYD,
-            passInt: passInt,
-            rushAtt: rushAtt,
-            rushTD: rushTD,
-            rushYD: rushYD,
-            receptions: receptions,
-            recTD: recTD,
-            recYD: recYD
+            f30Pct: f30Pct,
+            f40Pct: f40Pct,
+            f50Pct: f50Pct,
+            fandxPts: fandxPts
           });
         };
         store.dispatch(loadAddPlayer({
           KFeedStats: KconsolidatedStats })
         );
-*/
+
         })
       .catch(err => console.log(err));
   }

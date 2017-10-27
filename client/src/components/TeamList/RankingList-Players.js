@@ -5,6 +5,7 @@ class RankingListPlayers extends React.Component {
   renderPlayersList() {
     const playersStatsList = [
       this.props.teamData.name,
+      this.props.teamData.team,
       this.props.teamData.compAtt,
       this.props.teamData.passYD,
       this.props.teamData.passTD,
