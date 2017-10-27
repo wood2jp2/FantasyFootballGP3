@@ -1,20 +1,26 @@
-html,body {
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+/* html,body {
     margin:0;
     padding:0;
-    height:100%; /* needed for container min-height */
+    height:100%; /* needed for container min-height
 
 }
 
 div#container {
-    position:relative; /* needed for footer positioning*/
-    margin:0 auto; /* center, not in IE5 */
+    position:relative; /* needed for footer positioning
+    margin:0 auto; /* center, not in IE5
     width:750px;
     background:#f0f0f0;
 
-    height:auto !important; /* real browsers */
-    height:100%; /* IE6: treaded as min-height*/
+    height:auto !important; /* real browsers
+    height:100%; /* IE6: treaded as min-height
 
-    min-height:100%; /* real browsers */
+    min-height:100%; /* real browsers
 }
 
 div#header {
@@ -29,7 +35,7 @@ div#header {
     }
 
 div#content {
-    padding:1em 1em 5em; /* bottom padding for footer */
+    padding:1em 1em 5em; /* bottom padding for footer
 }
     div#content p {
         text-align:justify;
@@ -39,7 +45,7 @@ div#content {
 div#footer {
     position:absolute;
     width:100%;
-    bottom:0; /* stick to bottom */
+    bottom:0; /* stick to bottom
     background:#ddd;
     border-top:6px double gray;
 }
@@ -90,3 +96,4 @@ footer {
 footer span {
   text-align: right;
 }
+*/

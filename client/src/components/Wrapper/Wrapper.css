@@ -1,6 +1,6 @@
 .wrapper {
   background-image: url("fieldbackground.jpg");
-  /* background-size: cover; */
+  background-size: cover;
   padding-bottom: 250px;
   padding-top: 10%;
 }
