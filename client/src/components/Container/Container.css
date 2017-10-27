@@ -8,45 +8,39 @@
   padding: 0 10px 10px 10px;
 }
 
-<<<<<<< Updated upstream
-=======
+
 .container {
  margin: 10px 0 0 10px;
  width: 1320px;
  padding: 0;
  background-image: url("fieldbackground.jpg");
  background-size: cover;
- 
+
 }
 
->>>>>>> Stashed changes
+
 .rankings-table {
+
   width: 1000px;
   font-family: Roboto;
   font-size: 18px;
   color: lightslategrey;
   margin: 20px;
-<<<<<<< Updated upstream
   background-color: antiquewhite;
   padding: 0 10px 10px 10px;
-  vertical-align: middle;
-  align-content: center;
-=======
-  border: 1px solid #ddd;
-  padding: 8px;
   float: left;
 }
 
 .injuries-table {
-  width: 1000px;
-  font-family: Roboto;
-  font-size: 18px;
-  color: lightslategray;
-  margin: 20px;
+  width: 800px;
+  font-family: Courier New, monospace;
+  font-size: 10px;
+  color: #FFFFFF;
+  margin: 20px 20px;
+  background-color: #43464B;
   padding: 0 10px 10px 10px;
-  float: left;
-
->>>>>>> Stashed changes
+  vertical-align: middle;
+  align-content: center;
 }
 
 table {

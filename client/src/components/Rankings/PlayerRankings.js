@@ -10,7 +10,6 @@ class PlayerRankings extends React.Component {
 
   render(){
     return(
-<<<<<<< Updated upstream
       <Container className="rankings-table">
         <div className="table-responsive"></div>
         <div>
@@ -25,10 +24,6 @@ class PlayerRankings extends React.Component {
           <RankingList
             teamPlayers={this.props.benchPlayers}
           />
-=======
-
-      <Container>
-        <div className="rankings-table striped grey lighten-5" >
           <div>
             <h3>QUARTERBACK</h3>
             <RankingList
@@ -67,7 +62,6 @@ class PlayerRankings extends React.Component {
               markedPosition={this.props.TEFeedStats[0].position}
             />
           </div>
->>>>>>> Stashed changes
         </div>
         <div className="rankings-table striped grey lighten-5" >
          <div>
@@ -101,6 +95,11 @@ function mapStateToProps(state) {
     playerSearch: state.playerSearch,
     playersNames: state.playersNames,
     playersStats: state.playersStats,
+    QBFeedStats: state.QBFeedStats,
+    RBFeedStats: state.RBFeedStats,
+    WRFeedStats: state.WRFeedStats,
+    TEFeedStats: state.TEFeedStats,
+    KFeedStats: state.KFeedStats,
     starterPlayers: state.starterPlayers,
     benchPlayers: state.benchPlayers,
     payloadContainer: state.payloadContainer

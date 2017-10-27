@@ -7,6 +7,11 @@ const
   env = require('dotenv').load(),
   exphbs = require('express-handlebars'),
   nodemailer = require('nodemailer'),
+  request = require('request'),
+  cheerio = require('cheerio'),
+  sequelize = require('sequelize'),
+  Twitter = require('twitter'),
+  twitterKeys = require('./app/TwitterScrape/keys').twitterKeys,
   port = process.env.PORT || 3001;
 
 // create reusable transporter object using the default SMTP transport
@@ -46,15 +51,19 @@ app.set('view engine', '.html');
 //Models
 const models = require("./app/models");
 
-  //Routes
-  // authRoute = require('./app/routes/auth.js')(app, passport);
-
 //load passport strategies
 require('./app/config/passport/passport.js')(passport, models.user);
 
-app.get('/fml', (req, res) => {
-  console.log(req.isAuthenticated());
-  res.send({'lmao': 'fml'});
+let client = new Twitter(twitterKeys);
+
+app.post('/twitterScrape', (req, res) => {
+  let params= {
+    count: 20
+  };
+  params.screen_name = req.body.analyst;
+  client.get('statuses/user_timeline', params, function(err, tweets, resp) {
+    res.send(tweets);
+  });
 });
 
 app.post('/signup', passport.authenticate('local-signup'), (req, res) => {
@@ -69,7 +78,7 @@ app.post('/signup', passport.authenticate('local-signup'), (req, res) => {
             we can further do to enhance your user experience! \
             Thank you from the team at FantasyFootballGP3.` // html body
   };
-  transporter.sendMail(mailOptions, function(error, info){
+  transporter.sendMail(mailOptions, (error, info) => {
       if(error){
           return console.log(error);
       }
@@ -77,12 +86,29 @@ app.post('/signup', passport.authenticate('local-signup'), (req, res) => {
   });
 });
 
-app.get('/', function(req, res) {
+app.get('/', (req, res) => {
   res.redirect('/signin')
 });
 
-app.post('/signin', passport.authenticate('local-signin'), function(req, res) {
+app.post('/signin', passport.authenticate('local-signin'), (req, res) => {
   res.send(req.body);
+});
+
+app.get('/signout', (req, res) => {
+  // models.User.find({
+  //   email: req.user.email
+  // }, function(err, doc) {
+  //   if (err) {
+  //     console.log(err)
+  //   } else {
+  //     res.json(doc)
+  //   }
+  // });
+  console.log('bye bye');
+  req.session.destroy(function(err) {
+    res.json('You signed out!');
+    console.log(req.session);
+  })
 });
 
 //Sync Database
@@ -96,4 +122,32 @@ app.listen(port, function(err) {
   if (!err)
     console.log("Site is live");
   else console.log(err)
+});
+
+app.get('/scrape', (req, res) => {
+
+  request('https://www.cbssports.com/nfl/injuries', (err, response, html) => {
+    const $ = cheerio.load(html);
+    var allResults = [];
+    $('.row1,.row2').each(function(i, element) {
+      var result = {};
+      result.name=$(this).find('a').text();
+      result.position=$(this).find("[align='center']").text();
+      result.status=$(this).find('td:nth-child(5)').text();
+      result.news=$(this).find('td:nth-child(6)').text();
+      result.injury=$(this).find('td:nth-child(4)').text();
+      allResults.push(result);
+      });
+    res.send(allResults)
+  });
+});
+
+app.get('/injuries', (req, res) => {
+  InjuryUpdate.find({}, function(err, doc) {
+    if (err) {
+      console.log(err)
+    } else {
+      res.json(doc)
+    }
+  })
 });

@@ -18,16 +18,20 @@ class PlayersSearch extends Component {
   };
 
   componentDidMount() {
+    this.loadNFLFeeds();
+    this.loadSportFeeds();
+  }
+
+  loadNFLFeeds = () => {
     API.getPlayersList()
       .then(res => {
         const onlyNames = res.data.players.reduce((item, i) =>
         {return [...item, i.name]}, ["Players"]);
-        this.loadAddPlayer({
+        store.dispatch(loadAddPlayer({
           playersNames: onlyNames,
           playersStats: res.data.players
-<<<<<<< Updated upstream
+
         })})
-=======
         }))})
       .catch(err => console.log(err));
   }
@@ -36,7 +40,7 @@ class PlayersSearch extends Component {
     API.getSportsFeeds()
       .then(function (res) {
         console.log(res.data);
-        
+
         const QBconsolidatedStats = [];
         const RBconsolidatedStats = [];
         const WRconsolidatedStats = [];
@@ -218,7 +222,7 @@ class PlayersSearch extends Component {
         );
 
         })
->>>>>>> Stashed changes
+
       .catch(err => console.log(err));
   }
 
@@ -242,13 +246,13 @@ class PlayersSearch extends Component {
       return i.name === bnplayer;
     });
 
-    if (this.props.benchPlayers.length < 6) {
+    if (this.props.benchPlayers.length < 7) {
       this.props.benchPlayers.push({
         ...allplayerStats
       });
       this.loadAddPlayer({payloadContainer: {benchPlayers: this.props.benchPlayers }});
     } else {
-        alert("You can only have 6 Bench Players");
+        alert("You can only have 7 Bench Players");
     }
   };
 
@@ -256,15 +260,23 @@ class PlayersSearch extends Component {
     const newList = this.props.starterPlayers.filter( player => {
       return (player.name !== delplayer.name);
     });
-    this.loadAddPlayer({payloadContainer: {starterPlayers: newList }});
+    this.loadAddPlayer({starterPlayers: newList });
   };
 
   deleteBenchPlayer(delplayer) {
     const newList = this.props.benchPlayers.filter( player => {
       return (player.name !== delplayer.name);
     });
-    this.loadAddPlayer({payloadContainer: {benchPlayers: newList }});
+    this.loadAddPlayer({benchPlayers: newList });
   };
+
+  renderSubmitToDatabase() {
+    return(
+      <div>
+        <button onClick={this.submitTeam}>Submit</button>
+      </div>
+    );
+  }
 
   render() {
     return(
@@ -281,6 +293,7 @@ class PlayersSearch extends Component {
             teamPlayers={this.props.starterPlayers}
             deletePlayer={this.deleteStarterPlayer.bind(this)}
           />
+          {this.renderSubmitToDatabase()}
         </div>
         <br></br>
         <br></br>
@@ -297,6 +310,7 @@ class PlayersSearch extends Component {
             teamPlayers={this.props.benchPlayers}
             deletePlayer={this.deleteBenchPlayer.bind(this)}
           />
+          {this.renderSubmitToDatabase()}
         </div>
       </container>
     );
@@ -312,6 +326,11 @@ function mapStateToProps(state) {
     playerSearch: state.playerSearch,
     playersNames: state.playersNames,
     playersStats: state.playersStats,
+    QBFeedStats: state.QBFeedStats,
+    RBFeedStats: state.RBFeedStats,
+    WRFeedStats: state.WRFeedStats,
+    TEFeedStats: state.TEFeedStats,
+    KFeedStats: state.KFeedStats,
     starterPlayers: state.starterPlayers,
     benchPlayers: state.benchPlayers,
     payloadContainer: state.payloadContainer
