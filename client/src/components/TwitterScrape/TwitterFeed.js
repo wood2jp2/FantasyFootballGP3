@@ -65,4 +65,4 @@ render () {
   }
 }
 
-export default TwitterFeedComponent
+export default TwitterFeedComponent;

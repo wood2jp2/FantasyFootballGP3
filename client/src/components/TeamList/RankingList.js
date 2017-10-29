@@ -1,44 +1,98 @@
 import React from "react";
-import RankingListHeader from "./RankingList-Header"
-import RankingListPlayers from "./RankingList-Players"
+import Container from "../Container/Container";
+import RankingList from "../TeamList/RankingList";
+import RankingKList from "../TeamList/RankingKList";
+import RankingSBList from "../TeamList/RankingSBList";
+import { connect } from "react-redux";
 
-class RankingList extends React.Component {
-  renderPlayers() {
-    const finalTopStats = [];
-    const positionStatsOnly = this.props.allPlayersnfl.filter( i => {
-      return i.position === this.props.markedPosition;
-    });
-    const topObjList = positionStatsOnly.sort(function (a, b) {
-      return b.seasonPts - a.seasonPts;
-    });
-    const topObjStats = topObjList.slice(0, 10);
 
-    for (let z = 0; z < topObjStats.length; z++) {
-      let sortingPlayers = this.props.teamPlayers.find( i => {
-        return i.name === topObjStats[z].name;
-      })
-      finalTopStats.push(sortingPlayers);
-      finalTopStats[z].Pts = topObjStats[z].seasonPts;
-    }
+class PlayerRankings extends React.Component {
 
-    console.log(finalTopStats);
-    return finalTopStats.map((player, index) =>
-      <RankingListPlayers key={index}
-        teamData={player}
-      />
+  render(){
+    return(
+
+      <Container>
+        <div className="rankings-table striped grey lighten-5" >
+          <div>
+            <h3>QUARTERBACK</h3>
+            <RankingList
+              teamPlayers={this.props.QBFeedStats}
+              allPlayersnfl={this.props.playersStats}
+              markedPosition={this.props.QBFeedStats[0].position}
+            />
+          </div>
+        </div>
+        <div className="rankings-table striped grey lighten-5" >
+          <div>
+            <h3>RUNNING BACK</h3>
+            <RankingList
+              teamPlayers={this.props.RBFeedStats}
+              allPlayersnfl={this.props.playersStats}
+              markedPosition={this.props.RBFeedStats[0].position}
+            />
+          </div>
+        </div>
+        <div className="rankings-table striped grey lighten-5" >
+          <div>
+            <h3>WIDE RECEIVER</h3>
+            <RankingList
+              teamPlayers={this.props.WRFeedStats}
+              allPlayersnfl={this.props.playersStats}
+              markedPosition={this.props.WRFeedStats[0].position}
+            />
+          </div>
+        </div>
+        <div className="rankings-table striped grey lighten-5" >
+          <div>
+            <h3>TIGHT END</h3>
+            <RankingList
+              teamPlayers={this.props.TEFeedStats}
+              allPlayersnfl={this.props.playersStats}
+              markedPosition={this.props.TEFeedStats[0].position}
+            />
+          </div>
+        </div>
+        <div className="rankings-table striped grey lighten-5" >
+          <div>
+            <h3>KICKERS</h3>
+            <RankingKList
+              teamPlayers={this.props.KFeedStats}
+            />
+          </div>
+        </div>
+        <div className="rankings-table striped grey lighten-5" >
+          <div>
+          <h3>STARTER PLAYERS</h3>
+            <RankingSBList
+              teamPlayers={this.props.starterPlayers}
+            />
+          </div>
+          <div className="rankings-table striped grey lighten-5">
+            <h3>BENCH PLAYERS</h3>
+            <RankingSBList
+              teamPlayers={this.props.benchPlayers}
+            />
+          </div>
+        </div>
+      </Container>
     );
   }
-
-  render() {
-    return (
-      <table className="table table-inverse">
-        <RankingListHeader />
-        <tbody>
-          {this.renderPlayers()}
-        </tbody>
-      </table>
-    );
-  };
 };
 
-export default RankingList;
+function mapStateToProps(state) {
+  return {
+    playerSearch: state.playerSearch,
+    playersNames: state.playersNames,
+    playersStats: state.playersStats,
+    QBFeedStats: state.QBFeedStats,
+    RBFeedStats: state.RBFeedStats,
+    WRFeedStats: state.WRFeedStats,
+    TEFeedStats: state.TEFeedStats,
+    KFeedStats: state.KFeedStats,
+    starterPlayers: state.starterPlayers,
+    benchPlayers: state.benchPlayers,
+    payloadContainer: state.payloadContainer
+  }
+};
+
+export default connect(mapStateToProps)(PlayerRankings);

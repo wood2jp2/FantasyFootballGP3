@@ -275,8 +275,8 @@ class PlayersSearch extends Component {
 
   render() {
     return(
-      <Container className="players-table" >
-        <div>
+      <Container>
+        <div className="players-table striped grey lighten-5">
           <h3>STARTER PLAYERS</h3>
           <AddPlayers
             createTeam={this.createStarterTeam.bind(this)}
@@ -291,7 +291,7 @@ class PlayersSearch extends Component {
           {this.renderSubmitToDatabase()}
         </div>
 
-        <div>
+        <div className="players-table striped grey lighten-5">
           <h3>BENCH PLAYERS</h3>
           <AddPlayers
             createTeam={this.createBenchTeam.bind(this)}

@@ -25,10 +25,9 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
     "materialize-css": "^0.100.2",
-<<<<<<< Updated upstream
-=======
+
     "mongoose": "^4.12.4",
->>>>>>> Stashed changes
+
     "mysql": "^2.15.0",
     "mongoose": "^4.12.4",
     "nodemailer": "^4.2.0",

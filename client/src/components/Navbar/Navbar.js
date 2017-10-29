@@ -9,7 +9,7 @@ const Navbar = props =>
     <div className="container-fluid">
       <div className="navbar-header">
 
-        <Link className="brand-logo" to="/">Fantasy Football GM</Link>
+        <Link className="brand-logo" to="/">Fantasy Football Virtual DOMinator</Link>
         </div>
 
           <ul className="right nav navbar-nav">
@@ -33,19 +33,6 @@ const Navbar = props =>
         ) : (
 
           <div>
-          <li
-            className={window.location.pathname === "/teammanager" ? "active" : ""}
-            ><Link to="/teammanager">Team Manager</Link>
-          </li>
-          <li
-            className={window.location.pathname === "/playerRankings" ? "active" : ""}
-            ><Link to="/playerRankings">Player Rankings</Link>
-          </li>
-          <li
-            className={window.location.pathname === "/signout" ? "active" : ""}
-            ><Link to='/signout'>Sign Out</Link>
-          </li>
-        </div>
             <ul className="nav navbar-nav">
               <li
                 className={window.location.pathname === "/teammanager" ? "active" : ""}
